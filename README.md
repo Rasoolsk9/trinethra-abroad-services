@@ -1,73 +1,121 @@
-# Welcome to your Lovable project
+Trinethra Edu Services – MBBS Abroad Consulting Website
+📌 Project Overview
 
-## Project info
+This repository contains the source code for the Trinethra Edu Services official website — a modern, responsive, and scalable platform designed for MBBS Abroad education consulting.
 
-**URL**: https://lovable.dev/projects/REPLACE_WITH_PROJECT_ID
+The website is built to:
 
-## How can I edit this code?
+Showcase MBBS opportunities abroad
 
-There are several ways of editing your application.
+Generate high-quality student leads
 
-**Use Lovable**
+Manage dynamic content via an admin panel
 
-Simply visit the [Lovable Project](https://lovable.dev/projects/REPLACE_WITH_PROJECT_ID) and start prompting.
+Provide a fast, SEO-friendly experience on mobile and web
 
-Changes made via Lovable will be committed automatically to this repo.
+🌍 Services Covered
 
-**Use your preferred IDE**
+The platform currently supports MBBS admissions for the following countries only:
 
-If you want to work locally using your own IDE, you can clone this repo and push changes. Pushed changes will also be reflected in Lovable.
+Kyrgyzstan
 
-The only requirement is having Node.js & npm installed - [install with nvm](https://github.com/nvm-sh/nvm#installing-and-updating)
+Russia
 
-Follow these steps:
+Georgia
 
-```sh
-# Step 1: Clone the repository using the project's Git URL.
-git clone <YOUR_GIT_URL>
+Kazakhstan
 
-# Step 2: Navigate to the project directory.
-cd <YOUR_PROJECT_NAME>
+United Kingdom (UK)
 
-# Step 3: Install the necessary dependencies.
-npm i
+✨ Key Features
 
-# Step 4: Start the development server with auto-reloading and an instant preview.
+Fully responsive (mobile, tablet, desktop)
+
+Dynamic country & university pages
+
+CMS-driven blogs, testimonials, FAQs
+
+Lead capture forms with email notifications
+
+WhatsApp click-to-chat integration
+
+SEO-optimized page structure
+
+Clean UI with modern academic/medical design
+
+🛠 Tech Stack
+
+Frontend: React + TypeScript
+
+Build Tool: Vite
+
+UI Components: shadcn/ui
+
+Styling: Tailwind CSS
+
+State & Structure: Component-based architecture
+
+Backend, CMS, and database integrations are designed to be modular and scalable.
+
+🚀 Getting Started (Local Development)
+Prerequisites
+
+Node.js (v18+ recommended)
+
+npm or yarn
+
+Installation
+# Clone the repository
+git clone https://github.com/Rasoolsk9/trinethra-abroad-services.git
+
+# Navigate into the project directory
+cd trinethra-compass
+
+# Install dependencies
+npm install
+
+# Start the development server
 npm run dev
-```
 
-**Edit a file directly in GitHub**
 
-- Navigate to the desired file(s).
-- Click the "Edit" button (pencil icon) at the top right of the file view.
-- Make your changes and commit the changes.
+The application will be available at:
 
-**Use GitHub Codespaces**
+http://localhost:5173
 
-- Navigate to the main page of your repository.
-- Click on the "Code" button (green button) near the top right.
-- Select the "Codespaces" tab.
-- Click on "New codespace" to launch a new Codespace environment.
-- Edit files directly within the Codespace and commit and push your changes once you're done.
+🔐 Environment Variables
 
-## What technologies are used for this project?
+Create a .env file based on .env.example:
 
-This project is built with:
+NEXT_PUBLIC_SITE_NAME=Trinethra Edu Services
+NEXT_PUBLIC_WHATSAPP_NUMBER=91XXXXXXXXXX
+ADMIN_EMAIL=info@trinethraeduservices.in
+RESEND_API_KEY=your_resend_api_key
+DATABASE_URL=your_database_url
 
-- Vite
-- TypeScript
-- React
-- shadcn-ui
-- Tailwind CSS
 
-## How can I deploy this project?
+⚠️ Never commit .env files to the repository.
 
-Simply open [Lovable](https://lovable.dev/projects/REPLACE_WITH_PROJECT_ID) and click on Share -> Publish.
+🌱 Branching Strategy
 
-## Can I connect a custom domain to my Lovable project?
+main → Stable, client-ready version
 
-Yes, you can!
+develop → Active development branch
 
-To connect a domain, navigate to Project > Settings > Domains and click Connect Domain.
+All new features should be developed in develop and merged into main after testing.
 
-Read more here: [Setting up a custom domain](https://docs.lovable.dev/features/custom-domain#custom-domain)
+📦 Versioning
+
+v1.0 – Initial MVP baseline
+
+Future versions will follow semantic versioning
+
+📄 License & Usage
+
+This project is proprietary and developed exclusively for Trinethra Edu Services.
+Unauthorized reuse or distribution is not permitted.
+
+👤 Maintained By
+
+Rasool
+AI Engineer / Full-Stack Developer
+Project Owner & Maintainer
