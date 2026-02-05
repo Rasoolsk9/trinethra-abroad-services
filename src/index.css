@@ -1,0 +1,156 @@
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Inter:wght@400;500;600;700&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 210 20% 98%;
+    --foreground: 215 50% 15%;
+
+    --card: 0 0% 100%;
+    --card-foreground: 215 50% 15%;
+
+    --popover: 0 0% 100%;
+    --popover-foreground: 215 50% 15%;
+
+    --primary: 215 80% 35%;
+    --primary-foreground: 0 0% 100%;
+
+    --secondary: 175 60% 40%;
+    --secondary-foreground: 0 0% 100%;
+
+    --muted: 210 20% 96%;
+    --muted-foreground: 215 20% 45%;
+
+    --accent: 175 70% 45%;
+    --accent-foreground: 0 0% 100%;
+
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 0 0% 100%;
+
+    --border: 210 20% 90%;
+    --input: 210 20% 90%;
+    --ring: 215 80% 35%;
+
+    --radius: 0.75rem;
+
+    /* Custom colors for medical education theme */
+    --navy: 215 80% 20%;
+    --navy-light: 215 60% 30%;
+    --teal: 175 60% 40%;
+    --teal-light: 175 50% 50%;
+    --teal-dark: 175 70% 30%;
+    --gold: 45 90% 55%;
+    --success: 145 60% 45%;
+
+    /* Gradients */
+    --gradient-hero: linear-gradient(135deg, hsl(215 80% 25%) 0%, hsl(215 70% 35%) 50%, hsl(175 60% 35%) 100%);
+    --gradient-card: linear-gradient(180deg, hsl(0 0% 100%) 0%, hsl(210 20% 98%) 100%);
+    --gradient-cta: linear-gradient(135deg, hsl(175 60% 40%) 0%, hsl(175 70% 35%) 100%);
+    --gradient-overlay: linear-gradient(180deg, hsla(215, 80%, 20%, 0.9) 0%, hsla(215, 70%, 30%, 0.8) 100%);
+
+    /* Shadows */
+    --shadow-sm: 0 1px 2px hsla(215, 50%, 15%, 0.05);
+    --shadow-md: 0 4px 6px -1px hsla(215, 50%, 15%, 0.08), 0 2px 4px -1px hsla(215, 50%, 15%, 0.04);
+    --shadow-lg: 0 10px 15px -3px hsla(215, 50%, 15%, 0.08), 0 4px 6px -2px hsla(215, 50%, 15%, 0.04);
+    --shadow-xl: 0 20px 25px -5px hsla(215, 50%, 15%, 0.1), 0 10px 10px -5px hsla(215, 50%, 15%, 0.04);
+    --shadow-card: 0 4px 20px hsla(215, 50%, 15%, 0.08);
+    --shadow-card-hover: 0 12px 30px hsla(215, 50%, 15%, 0.12);
+
+    --sidebar-background: 0 0% 98%;
+    --sidebar-foreground: 240 5.3% 26.1%;
+    --sidebar-primary: 240 5.9% 10%;
+    --sidebar-primary-foreground: 0 0% 98%;
+    --sidebar-accent: 240 4.8% 95.9%;
+    --sidebar-accent-foreground: 240 5.9% 10%;
+    --sidebar-border: 220 13% 91%;
+    --sidebar-ring: 217.2 91.2% 59.8%;
+  }
+
+  .dark {
+    --background: 215 50% 8%;
+    --foreground: 210 20% 98%;
+
+    --card: 215 50% 12%;
+    --card-foreground: 210 20% 98%;
+
+    --popover: 215 50% 12%;
+    --popover-foreground: 210 20% 98%;
+
+    --primary: 175 60% 50%;
+    --primary-foreground: 215 50% 10%;
+
+    --secondary: 215 40% 25%;
+    --secondary-foreground: 210 20% 98%;
+
+    --muted: 215 40% 20%;
+    --muted-foreground: 210 20% 70%;
+
+    --accent: 175 50% 45%;
+    --accent-foreground: 215 50% 10%;
+
+    --destructive: 0 62% 50%;
+    --destructive-foreground: 210 20% 98%;
+
+    --border: 215 40% 20%;
+    --input: 215 40% 20%;
+    --ring: 175 60% 50%;
+
+    --sidebar-background: 240 5.9% 10%;
+    --sidebar-foreground: 240 4.8% 95.9%;
+    --sidebar-primary: 224.3 76.3% 48%;
+    --sidebar-primary-foreground: 0 0% 100%;
+    --sidebar-accent: 240 3.7% 15.9%;
+    --sidebar-accent-foreground: 240 4.8% 95.9%;
+    --sidebar-border: 240 3.7% 15.9%;
+    --sidebar-ring: 217.2 91.2% 59.8%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground font-sans antialiased;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-heading font-bold tracking-tight;
+  }
+}
+
+@layer components {
+  .container-custom {
+    @apply max-w-7xl mx-auto px-4 sm:px-6 lg:px-8;
+  }
+
+  .section-padding {
+    @apply py-16 md:py-20 lg:py-24;
+  }
+
+  .card-medical {
+    @apply bg-card rounded-2xl shadow-card hover:shadow-card-hover transition-all duration-300;
+  }
+
+  .btn-hero {
+    @apply bg-secondary text-secondary-foreground font-semibold px-8 py-4 rounded-xl 
+           hover:brightness-110 transition-all duration-300 shadow-lg hover:shadow-xl;
+  }
+
+  .btn-outline-hero {
+    @apply border-2 border-white/30 text-white font-semibold px-8 py-4 rounded-xl 
+           hover:bg-white/10 backdrop-blur-sm transition-all duration-300;
+  }
+
+  .gradient-text {
+    @apply bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent;
+  }
+
+  .floating-cta {
+    @apply fixed bottom-6 right-6 z-50 flex flex-col gap-3;
+  }
+}
