@@ -47,17 +47,17 @@ const FreeCounselling = () => {
 
               <div className="space-y-4 pt-6 border-t border-white/20">
                 <h3 className="font-semibold text-lg">Contact Us Directly</h3>
-                <a href="tel:+919876543210" className="flex items-center gap-3 text-white/80 hover:text-secondary transition-colors">
+                <a href="tel:+917993909809" className="flex items-center gap-3 text-white/80 hover:text-secondary transition-colors">
                   <Phone className="h-5 w-5" />
-                  +91 98765 43210
+                  +91 79939 09809
                 </a>
-                <a href="mailto:info@trinethraeduservices.in" className="flex items-center gap-3 text-white/80 hover:text-secondary transition-colors">
+                <a href="mailto:info@trinethraeduses.in" className="flex items-center gap-3 text-white/80 hover:text-secondary transition-colors">
                   <Mail className="h-5 w-5" />
                   info@trinethraeduservices.in
                 </a>
                 <div className="flex items-start gap-3 text-white/80">
                   <MapPin className="h-5 w-5 flex-shrink-0 mt-0.5" />
-                  <span>123 Education Hub, Hyderabad, Telangana, India - 500001</span>
+                  <span>123 Education Hub, Hyderabad, Telangana, India - 500001 </span>
                 </div>
               </div>
             </div>

@@ -41,9 +41,9 @@ export const Navbar = () => {
         <div className="container-custom flex justify-between items-center text-sm">
           <p className="hidden md:block">🎓 Trusted MBBS Abroad Consultants | NMC & WHO Recognized Universities</p>
           <div className="flex items-center gap-4 mx-auto md:mx-0">
-            <a href="tel:+919876543210" className="flex items-center gap-1 hover:text-secondary transition-colors">
+            <a href="tel:+917993909809" className="flex items-center gap-1 hover:text-secondary transition-colors">
               <Phone className="h-3 w-3" />
-              +91 98765 43210
+              +91 79939 09809
             </a>
           </div>
         </div>

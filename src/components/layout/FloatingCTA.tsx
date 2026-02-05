@@ -1,10 +1,18 @@
 import { Phone, MessageCircle } from "lucide-react";
 
 export const FloatingCTA = () => {
+  const phoneNumber = "917993909809";
+
+  const whatsappMessage =
+    "Hi, I am interested in MBBS abroad. Please guide me.";
+
   return (
     <div className="floating-cta">
+      {/* WhatsApp */}
       <a
-        href="https://wa.me/919876543210?text=Hi%2C%20I%20am%20interested%20in%20MBBS%20abroad.%20Please%20guide%20me."
+        href={`https://wa.me/${phoneNumber}?text=${encodeURIComponent(
+          whatsappMessage
+        )}`}
         target="_blank"
         rel="noopener noreferrer"
         className="w-14 h-14 bg-success rounded-full flex items-center justify-center shadow-lg hover:scale-110 transition-transform"
@@ -12,8 +20,10 @@ export const FloatingCTA = () => {
       >
         <MessageCircle className="h-6 w-6 text-white" />
       </a>
+
+      {/* Call */}
       <a
-        href="tel:+919876543210"
+        href={`tel:+${phoneNumber}`}
         className="w-14 h-14 bg-secondary rounded-full flex items-center justify-center shadow-lg hover:scale-110 transition-transform"
         aria-label="Call us"
       >

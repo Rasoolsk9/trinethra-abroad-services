@@ -46,8 +46,8 @@ const Contact = () => {
                   </div>
                   <div>
                     <h3 className="font-semibold text-foreground mb-1">Phone</h3>
-                    <a href="tel:+919876543210" className="text-muted-foreground hover:text-primary transition-colors">
-                      +91 98765 43210
+                    <a href="tel:+917993909809" className="text-muted-foreground hover:text-primary transition-colors">
+                      +91 79939 09809
                     </a>
                     <p className="text-sm text-muted-foreground mt-1">Mon-Sat: 9AM - 7PM</p>
                   </div>
@@ -60,12 +60,12 @@ const Contact = () => {
                   <div>
                     <h3 className="font-semibold text-foreground mb-1">WhatsApp</h3>
                     <a 
-                      href="https://wa.me/919876543210"
+                      href="https://wa.me/917993909809"
                       target="_blank"
                       rel="noopener noreferrer"
                       className="text-muted-foreground hover:text-primary transition-colors"
                     >
-                      +91 98765 43210
+                      +91 79939 09809
                     </a>
                     <p className="text-sm text-muted-foreground mt-1">Quick responses guaranteed</p>
                   </div>

@@ -100,9 +100,9 @@ export const Footer = () => {
           <div>
             <h4 className="font-heading font-bold text-lg mb-4">Contact Us</h4>
             <div className="space-y-3">
-              <a href="tel:+919876543210" className="flex items-start gap-3 text-sm text-primary-foreground/80 hover:text-secondary transition-colors">
+              <a href="tel:+917993909809" className="flex items-start gap-3 text-sm text-primary-foreground/80 hover:text-secondary transition-colors">
                 <Phone className="h-4 w-4 mt-0.5 flex-shrink-0" />
-                <span>+91 98765 43210</span>
+                <span>+91 79939 09809</span>
               </a>
               <a href="mailto:info@trinethraeduservices.in" className="flex items-start gap-3 text-sm text-primary-foreground/80 hover:text-secondary transition-colors">
                 <Mail className="h-4 w-4 mt-0.5 flex-shrink-0" />
