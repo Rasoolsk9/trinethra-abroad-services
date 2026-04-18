@@ -20,12 +20,10 @@ export const TestimonialCard = ({
   image,
 }: TestimonialCardProps) => {
   return (
-    <div className="card-medical p-6 space-y-4">
-      {/* Quote */}
-      <p className="text-muted-foreground leading-relaxed italic">"{quote}"</p>
+    <div className="h-full rounded-2xl border border-border/70 bg-white p-5 shadow-sm">
+      <p className="line-clamp-5 text-sm leading-relaxed text-foreground/90">"{quote}"</p>
 
-      {/* Rating */}
-      <div className="flex gap-1">
+      <div className="mt-3 flex gap-1">
         {[...Array(5)].map((_, i) => (
           <Star
             key={i}
@@ -36,8 +34,7 @@ export const TestimonialCard = ({
         ))}
       </div>
 
-      {/* Author */}
-      <div className="flex items-center gap-3 pt-2 border-t border-border">
+      <div className="mt-4 flex items-center gap-3 border-t border-border pt-3">
         <div className="w-12 h-12 rounded-full overflow-hidden bg-muted flex-shrink-0">
           {image ? (
             <img src={image} alt={name} className="w-full h-full object-cover" />
@@ -48,8 +45,8 @@ export const TestimonialCard = ({
           )}
         </div>
         <div>
-          <p className="font-heading font-semibold text-foreground">{name}</p>
-          <p className="text-sm text-muted-foreground">
+          <p className="font-heading text-sm font-semibold text-foreground">{name}</p>
+          <p className="text-xs text-muted-foreground">
             {university}, {country} ({year})
           </p>
         </div>

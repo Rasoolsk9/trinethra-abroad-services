@@ -11,7 +11,6 @@ interface UniversityCardProps {
   city: string;
   established: number;
   recognition: string[];
-  tuitionFee: string;
   image?: string;
   ranking?: string;
 }
@@ -24,7 +23,6 @@ export const UniversityCard = ({
   city,
   established,
   recognition,
-  tuitionFee,
   image,
   ranking,
 }: UniversityCardProps) => {
@@ -76,17 +74,12 @@ export const UniversityCard = ({
           ))}
         </div>
 
-        <div className="pt-3 border-t border-border">
-          <p className="text-xs text-muted-foreground">Tuition Fee (per year)</p>
-          <p className="font-heading font-bold text-primary">{tuitionFee}</p>
-        </div>
-
         <div className="flex gap-2 pt-2">
           <Button asChild variant="outline" className="flex-1">
-            <Link to={`/university/${slug}`}>Learn More</Link>
+            <Link to={`/university/${slug}/apply`}>View Details</Link>
           </Button>
           <Button asChild className="flex-1 bg-secondary hover:bg-secondary/90">
-            <Link to="/free-counselling">Apply Now</Link>
+            <Link to={`/university/${slug}/apply`}>Apply Now</Link>
           </Button>
         </div>
       </div>

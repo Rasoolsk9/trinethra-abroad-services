@@ -1,76 +1,144 @@
-import { CountryCard } from "@/components/cards/CountryCard";
+import { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
+import { ChevronLeft, ChevronRight } from "lucide-react";
+import { countrySlides, countryImageUrl, flagUrl } from "@/data/country-slides";
 
-const countries = [
-  {
-    name: "Kyrgyzstan",
-    slug: "kyrgyzstan",
-    flag: "🇰🇬",
-    universities: 8,
-    duration: "5+1 Years",
-    recognition: "NMC, WHO, UNESCO",
-    tuitionRange: "₹2.5 - 4.5 Lakhs",
-  },
-  {
-    name: "Russia",
-    slug: "russia",
-    flag: "🇷🇺",
-    universities: 50,
-    duration: "6 Years",
-    recognition: "NMC, WHO, ECFMG",
-    tuitionRange: "₹3.5 - 8 Lakhs",
-  },
-  {
-    name: "Georgia",
-    slug: "georgia",
-    flag: "🇬🇪",
-    universities: 10,
-    duration: "6 Years",
-    recognition: "NMC, WHO, WFME",
-    tuitionRange: "₹4 - 7 Lakhs",
-  },
-  {
-    name: "Kazakhstan",
-    slug: "kazakhstan",
-    flag: "🇰🇿",
-    universities: 12,
-    duration: "5+1 Years",
-    recognition: "NMC, WHO, UNESCO",
-    tuitionRange: "₹3 - 5.5 Lakhs",
-  },
-  {
-    name: "United Kingdom",
-    slug: "uk",
-    flag: "🇬🇧",
-    universities: 40,
-    duration: "5-6 Years",
-    recognition: "GMC, WHO, WFME",
-    tuitionRange: "₹25 - 50 Lakhs",
-  },
-];
+const AUTO_MS = 3000;
 
 export const CountriesSection = () => {
+  const [imgErr, setImgErr] = useState<Record<string, boolean>>({});
+  const [index, setIndex] = useState(0);
+  const [paused, setPaused] = useState(false);
+  const n = countrySlides.length;
+  const slidePercent = 100 / n;
+
+  const prev = () => setIndex((i) => (i - 1 + n) % n);
+  const next = () => setIndex((i) => (i + 1) % n);
+
+  useEffect(() => {
+    if (paused) return;
+    const t = window.setInterval(() => {
+      setIndex((i) => (i + 1) % n);
+    }, AUTO_MS);
+    return () => window.clearInterval(t);
+  }, [paused, n]);
+
   return (
-    <section className="section-padding bg-background">
+    <section id="countries" className="bg-background py-10 md:py-14">
       <div className="container-custom">
-        {/* Header */}
-        <div className="text-center max-w-3xl mx-auto mb-12">
-          <span className="inline-block px-4 py-1.5 bg-secondary/10 text-secondary font-medium text-sm rounded-full mb-4">
+        <div className="mx-auto mb-6 max-w-3xl text-center md:mb-8">
+          <span className="mb-2 inline-block rounded-full bg-secondary/10 px-4 py-1.5 text-sm font-medium text-secondary">
             Our Destinations
           </span>
-          <h2 className="font-heading text-3xl md:text-4xl font-bold text-foreground mb-4">
-            Study MBBS in Top Countries
-          </h2>
-          <p className="text-muted-foreground text-lg">
-            We offer MBBS admissions in 5 carefully selected countries with NMC & WHO 
-            recognized universities, affordable fees, and excellent medical education.
+          <h2 className="font-heading text-2xl font-bold text-foreground md:text-3xl">Study MBBS in Top Countries</h2>
+          <p className="mt-2 text-sm text-muted-foreground md:text-base">
+            Explore each destination — trusted guidance for your MBBS journey.
           </p>
         </div>
 
-        {/* Country Cards Grid */}
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {countries.map((country) => (
-            <CountryCard key={country.slug} {...country} />
-          ))}
+        <div
+          className="relative mx-auto max-w-4xl"
+          onMouseEnter={() => setPaused(true)}
+          onMouseLeave={() => setPaused(false)}
+          onTouchStart={() => setPaused(true)}
+          onTouchEnd={() => {
+            window.setTimeout(() => setPaused(false), 2500);
+          }}
+        >
+          <button
+            type="button"
+            onClick={prev}
+            className="absolute left-0 top-1/2 z-10 hidden h-10 w-10 -translate-x-1 -translate-y-1/2 items-center justify-center rounded-full border border-border/80 bg-white/95 shadow-lg backdrop-blur-sm transition hover:bg-muted md:flex lg:-translate-x-2"
+            aria-label="Previous country"
+          >
+            <ChevronLeft className="h-5 w-5 text-foreground" />
+          </button>
+          <button
+            type="button"
+            onClick={next}
+            className="absolute right-0 top-1/2 z-10 hidden h-10 w-10 translate-x-1 -translate-y-1/2 items-center justify-center rounded-full border border-border/80 bg-white/95 shadow-lg backdrop-blur-sm transition hover:bg-muted md:flex lg:translate-x-2"
+            aria-label="Next country"
+          >
+            <ChevronRight className="h-5 w-5 text-foreground" />
+          </button>
+
+          {/* One slide = 100% of this box — inner track is n× wide so peers never peek */}
+          <div className="overflow-hidden rounded-2xl border border-border/50 bg-muted/20 shadow-[0_20px_50px_-20px_rgba(15,40,80,0.25)] ring-1 ring-black/[0.04]">
+            <div
+              className="flex transition-transform duration-700 will-change-transform"
+              style={{
+                width: `${n * 100}%`,
+                transform: `translateX(-${index * slidePercent}%)`,
+                transitionTimingFunction: "cubic-bezier(0.25, 0.46, 0.45, 0.94)",
+              }}
+            >
+              {countrySlides.map((c) => {
+                const src = countryImageUrl(c.slug);
+                const showImg = !imgErr[c.slug];
+                return (
+                  <div
+                    key={c.slug}
+                    className="shrink-0"
+                    style={{ width: `${slidePercent}%` }}
+                  >
+                    <Link
+                      to={`/mbbs-in-${c.slug}`}
+                      className="group relative block overflow-hidden bg-white"
+                    >
+                      <div className="relative aspect-[16/10] w-full overflow-hidden bg-gradient-to-br from-primary/30 via-primary/10 to-secondary/20">
+                        {showImg ? (
+                          <img
+                            src={src}
+                            alt={c.name}
+                            className="h-full w-full object-cover transition duration-700 group-hover:scale-[1.03]"
+                            onError={() => setImgErr((e) => ({ ...e, [c.slug]: true }))}
+                          />
+                        ) : (
+                          <div className="flex h-full w-full items-center justify-center bg-gradient-to-br from-primary/40 to-secondary/30">
+                            <span className="text-5xl drop-shadow-md">🎓</span>
+                          </div>
+                        )}
+                        <div className="absolute inset-0 bg-gradient-to-t from-[#041c3a]/88 via-[#041c3a]/28 to-transparent" />
+                        <div className="absolute bottom-0 left-0 right-0 flex items-end justify-between gap-3 p-4 sm:p-5">
+                          <div className="min-w-0">
+                            <div className="mb-2 flex flex-wrap items-center gap-2">
+                              <img
+                                src={flagUrl(c.iso2, 80)}
+                                alt=""
+                                width={36}
+                                height={27}
+                                className="h-7 w-auto rounded border border-white/45 shadow-md sm:h-8"
+                                loading="lazy"
+                              />
+                              <span className="font-heading text-lg font-bold text-white drop-shadow-md sm:text-xl">
+                                {c.name}
+                              </span>
+                            </div>
+                            <p className="text-xs text-white/92 sm:text-sm">{c.blurb}</p>
+                          </div>
+                          <span className="shrink-0 rounded-full bg-white px-3 py-1.5 text-xs font-semibold text-primary shadow-md">
+                            Explore
+                          </span>
+                        </div>
+                      </div>
+                    </Link>
+                  </div>
+                );
+              })}
+            </div>
+          </div>
+
+          <div className="mt-5 flex justify-center gap-2">
+            {countrySlides.map((c, i) => (
+              <button
+                key={c.slug}
+                type="button"
+                onClick={() => setIndex(i)}
+                className={`h-2 rounded-full transition-all duration-300 ${i === index ? "w-8 bg-primary" : "w-2 bg-border hover:bg-muted-foreground/40"}`}
+                aria-label={`Show ${c.name}`}
+              />
+            ))}
+          </div>
         </div>
       </div>
     </section>

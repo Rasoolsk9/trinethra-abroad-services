@@ -53,26 +53,25 @@ const testimonials = [
 
 export const TestimonialsSection = () => {
   return (
-    <section className="section-padding bg-muted">
+    <section className="bg-background py-12 md:py-14">
       <div className="container-custom">
-        {/* Header */}
-        <div className="text-center max-w-3xl mx-auto mb-12">
-          <span className="inline-block px-4 py-1.5 bg-primary/10 text-primary font-medium text-sm rounded-full mb-4">
+        <div className="mx-auto mb-8 max-w-3xl text-center">
+          <span className="mb-3 inline-block rounded-full bg-primary/10 px-4 py-1.5 text-sm font-medium text-primary">
             Success Stories
           </span>
-          <h2 className="font-heading text-3xl md:text-4xl font-bold text-foreground mb-4">
+          <h2 className="font-heading text-2xl font-bold text-foreground md:text-3xl">
             What Our Students Say
           </h2>
-          <p className="text-muted-foreground text-lg">
-            Don't just take our word for it. Hear from students who achieved their 
-            dream of becoming doctors with our guidance.
+          <p className="mt-3 text-sm text-muted-foreground md:text-base">
+            Real stories from students who started their MBBS journey with Trinethra.
           </p>
         </div>
 
-        {/* Testimonials Grid */}
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <div className="flex snap-x snap-mandatory gap-4 overflow-x-auto pb-2">
           {testimonials.map((testimonial, index) => (
-            <TestimonialCard key={index} {...testimonial} />
+            <div key={index} className="min-w-[85%] snap-start sm:min-w-[55%] lg:min-w-[32%]">
+              <TestimonialCard {...testimonial} />
+            </div>
           ))}
         </div>
       </div>

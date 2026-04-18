@@ -7,27 +7,25 @@ export const FloatingCTA = () => {
     "Hi, I am interested in MBBS abroad. Please guide me.";
 
   return (
-    <div className="floating-cta">
-      {/* WhatsApp */}
+    <div className="floating-cta bottom-6 max-md:bottom-[calc(1rem+env(safe-area-inset-bottom,0px))]">
       <a
         href={`https://wa.me/${phoneNumber}?text=${encodeURIComponent(
           whatsappMessage
         )}`}
         target="_blank"
         rel="noopener noreferrer"
-        className="w-14 h-14 bg-success rounded-full flex items-center justify-center shadow-lg hover:scale-110 transition-transform"
+        className="flex h-12 w-12 items-center justify-center rounded-full bg-success shadow-lg transition-transform hover:scale-110"
         aria-label="Chat on WhatsApp"
       >
-        <MessageCircle className="h-6 w-6 text-white" />
+        <MessageCircle className="h-5 w-5 text-white" />
       </a>
 
-      {/* Call */}
       <a
         href={`tel:+${phoneNumber}`}
-        className="w-14 h-14 bg-secondary rounded-full flex items-center justify-center shadow-lg hover:scale-110 transition-transform"
+        className="flex h-12 w-12 items-center justify-center rounded-full bg-secondary shadow-lg transition-transform hover:scale-110"
         aria-label="Call us"
       >
-        <Phone className="h-6 w-6 text-secondary-foreground" />
+        <Phone className="h-5 w-5 text-secondary-foreground" />
       </a>
     </div>
   );

@@ -50,6 +50,9 @@
     --gradient-card: linear-gradient(180deg, hsl(0 0% 100%) 0%, hsl(210 20% 98%) 100%);
     --gradient-cta: linear-gradient(135deg, hsl(175 60% 40%) 0%, hsl(175 70% 35%) 100%);
     --gradient-overlay: linear-gradient(180deg, hsla(215, 80%, 20%, 0.9) 0%, hsla(215, 70%, 30%, 0.8) 100%);
+    /* Lighter overlay (~35% clearer than previous) so photo reads through */
+    --hero-overlay: linear-gradient(95deg, rgba(4, 19, 39, 0.58) 0%, rgba(7, 33, 68, 0.52) 45%, rgba(7, 33, 68, 0.34) 100%);
+    --hero-overlay-alt: linear-gradient(105deg, rgba(4, 19, 39, 0.52) 0%, rgba(7, 33, 68, 0.44) 50%, rgba(7, 33, 68, 0.28) 100%);
 
     /* Shadows */
     --shadow-sm: 0 1px 2px hsla(215, 50%, 15%, 0.05);
@@ -152,5 +155,50 @@
 
   .floating-cta {
     @apply fixed bottom-6 right-6 z-50 flex flex-col gap-3;
+  }
+
+  .consult-blink {
+    animation: consultPulse 1.15s ease-in-out infinite;
+  }
+
+  /* Hero: alternating enter — slide (horizontal) vs fade */
+  .hero-enter-fade {
+    animation: heroEnterFade 0.6s ease-out both;
+  }
+  .hero-enter-slide {
+    animation: heroEnterSlide 0.55s cubic-bezier(0.22, 1, 0.36, 1) both;
+  }
+}
+
+@keyframes heroEnterFade {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes heroEnterSlide {
+  from {
+    opacity: 0;
+    transform: translateX(22px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes consultPulse {
+  0%, 100% {
+    box-shadow: 0 0 0 0 rgba(3, 108, 176, 0.55), 0 8px 18px rgba(0, 0, 0, 0.2);
+    transform: scale(1);
+  }
+  50% {
+    box-shadow: 0 0 0 10px rgba(3, 108, 176, 0), 0 8px 18px rgba(0, 0, 0, 0.2);
+    transform: scale(1.03);
   }
 }

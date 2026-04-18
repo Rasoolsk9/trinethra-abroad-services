@@ -23,47 +23,43 @@ export const CountryCard = ({
   return (
     <Link
       to={`/mbbs-in-${slug}`}
-      className="group card-medical overflow-hidden"
+      className="group overflow-hidden rounded-2xl border border-border/70 bg-white shadow-sm transition-all duration-300 hover:-translate-y-1 hover:shadow-lg"
     >
-      {/* Flag/Header */}
-      <div className="relative h-40 overflow-hidden">
-        <div className="absolute inset-0 bg-gradient-hero opacity-90" />
-        <div className="absolute inset-0 flex items-center justify-center">
-          <span className="text-6xl">{flag}</span>
-        </div>
-        <div className="absolute bottom-0 left-0 right-0 p-4 bg-gradient-to-t from-black/50 to-transparent">
-          <h3 className="font-heading font-bold text-xl text-white">MBBS in {name}</h3>
+      <div className="relative h-24 overflow-hidden">
+        <div className="absolute inset-0 bg-gradient-to-r from-primary to-secondary opacity-95" />
+        <div className="absolute left-4 top-1/2 flex -translate-y-1/2 items-center gap-3">
+          <span className="text-3xl">{flag}</span>
+          <h3 className="font-heading text-lg font-bold text-white">MBBS in {name}</h3>
         </div>
       </div>
 
-      {/* Content */}
-      <div className="p-5 space-y-4">
-        <div className="grid grid-cols-2 gap-3">
-          <div className="flex items-center gap-2 text-sm text-muted-foreground">
+      <div className="space-y-3 p-4">
+        <div className="grid grid-cols-2 gap-2">
+          <div className="flex items-center gap-2 text-xs text-muted-foreground sm:text-sm">
             <Building2 className="h-4 w-4 text-primary" />
             <span>{universities}+ Universities</span>
           </div>
-          <div className="flex items-center gap-2 text-sm text-muted-foreground">
+          <div className="flex items-center gap-2 text-xs text-muted-foreground sm:text-sm">
             <GraduationCap className="h-4 w-4 text-primary" />
             <span>{duration}</span>
           </div>
         </div>
 
-        <div className="flex items-center gap-2 text-sm">
+        <div className="flex items-center gap-2 text-xs sm:text-sm">
           <BadgeCheck className="h-4 w-4 text-success" />
           <span className="text-muted-foreground">{recognition}</span>
         </div>
 
-        <div className="pt-3 border-t border-border">
-          <p className="text-sm text-muted-foreground">Tuition Fee (per year)</p>
-          <p className="font-heading font-bold text-primary text-lg">{tuitionRange}</p>
+        <div className="border-t border-border pt-3">
+          <p className="text-xs text-muted-foreground">Tuition Fee (per year)</p>
+          <p className="font-heading text-base font-bold text-primary sm:text-lg">{tuitionRange}</p>
         </div>
 
-        <div className="flex items-center justify-between pt-2">
-          <span className="text-sm font-medium text-primary group-hover:text-secondary transition-colors">
+        <div className="flex items-center justify-between pt-1">
+          <span className="text-sm font-medium text-primary transition-colors group-hover:text-secondary">
             Explore Universities
           </span>
-          <ArrowRight className="h-4 w-4 text-primary group-hover:text-secondary group-hover:translate-x-1 transition-all" />
+          <ArrowRight className="h-4 w-4 text-primary transition-all group-hover:translate-x-1 group-hover:text-secondary" />
         </div>
       </div>
     </Link>
