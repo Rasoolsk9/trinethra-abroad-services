@@ -6,22 +6,61 @@ Official marketing site for **Trinethra Edu Services** — MBBS abroad guidance 
 
 ---
 
-## What’s in this version
+## Version 2 (April 2026)
 
-This release focuses on a **premium, consultancy-style UI** (clear hierarchy, strong hero, polished components) and a complete **country → university** browsing flow.
+Premium branding, expanded destinations, reliable navigation, server-side lead delivery to WhatsApp, and production performance tuning for Vercel.
 
-| Area | What changed |
-|------|----------------|
-| **Layout & chrome** | Sticky navbar (transparent → solid), footer, floating WhatsApp + call CTAs |
-| **Hero** | Full-bleed imagery (`/hero-premium.jpg`, bundled student photo), glass-style lead form, dual messaging |
-| **Countries** | Full-width carousel: **one slide at a time** on desktop (no side “peek”), **auto-advance every 3 seconds**, smooth transition, dot indicators, optional pause on hover/touch. Country images from `public/countries/{slug}.jpg`, flags via FlagCDN |
-| **Country pages** | Routes like `/mbbs-in-kyrgyzstan` — deep content per destination |
-| **Universities** | Listing and detail pages; apply flow at `/university/:slug/apply` then `/university/:slug` |
-| **Why choose us** | Animated stat counters (Intersection Observer), benefit cards |
-| **Testimonials & CTA** | Social proof section; CTA with expandable “Study abroad” copy |
-| **Tech cleanup** | React Router routes aligned (no broken Contact import); `vercel.json` for SPA client-side routing on deploy |
+### Brand & layout
 
-Older README claims (CMS, blogs, admin panel, UK as active destination) are **aspirational / roadmap** — the **live app** currently centres on the four countries in the carousel (Kyrgyzstan, Russia, Georgia, Kazakhstan) plus the flows above.
+- **Logo:** `public/logo-trinethra.png` in navbar and footer (replaces placeholder “T” icon).
+- **Wordmark:** “TRINETHRA / EDU SERVICES” with **Indian tricolor–inspired** gradient (saffron → **navy** → green) for contrast on light glass; responsive sizing.
+- **Consult CTA:** **Premium** navy-to-teal gradient button (`.btn-consult-premium`) with subtle pulse — no loud flag stripes on the pill.
+- **About page:** Hero and CTA bands use **tricolor-inspired** gradients; stat cards and milestones updated for the same theme.
+
+### Navigation & UX
+
+- **`ScrollToHash`:** Hash links (`/#countries`, `/#contact`) work after SPA navigation (e.g. from `/about`); **scroll-margin** on `#home`, `#countries`, `#contact` so the fixed navbar does not cover section titles.
+- **Countries menu:** Dropdown (desktop) and collapsible list (mobile) with **FlagCDN** flags next to each destination; “View all destinations” links to `/#countries`.
+
+### Destinations
+
+- **Nine countries** in `src/data/country-slides.ts` and navbar: Kyrgyzstan, Russia, Georgia, Kazakhstan, **UK, USA, New Zealand, Germany, Canada**.
+- **Country pages** extended in `src/pages/CountryPage.tsx` for the new slugs (routes: `/mbbs-in-{slug}`).
+- **Countries carousel:** `translate3d` track, **swipe** on touch, **prev/next arrows on mobile**, dot indicators with padding; second hero image loaded from `public/hero-students.jpg` after idle (smaller initial JS payload).
+
+### Hero content
+
+- Slide 2 headline and copy updated to **global study-abroad** messaging (trusted experts, transparency, end-to-end support) with a premium left-border layout on large screens.
+
+### Lead capture
+
+- **`LeadForm`** submits to **`POST /api/lead`** (Vercel serverless, `api/lead.ts`).
+- Leads are forwarded to **your WhatsApp** via **[CallMeBot](https://www.callmebot.com/)** — the visitor does **not** open WhatsApp to compose; they see an in-page **thank you** message.
+- **`UniversityLeadPage`** passes `leadContext` (university name) into the notification; `onSuccess` still runs after a short delay for navigation to the university detail page.
+
+### Performance & deploy
+
+- **`App.tsx`:** Lazy-loaded routes (except home) + React Query defaults tuned.
+- **`index.html`:** Preconnect/preload for fonts and LCP hero image; `dns-prefetch` for FlagCDN.
+- **`vercel.json`:** Long-cache headers for hashed `/assets/*` and images; SPA rewrite to `index.html` (API routes are handled by Vercel before the rewrite).
+- **`vite.config.ts`:** `manualChunks` for `vendor-react`, `target: es2020`, `cssMinify: true`.
+
+### Environment variables (Vercel)
+
+For `/api/lead` to deliver to WhatsApp, set in the Vercel project:
+
+| Variable | Purpose |
+|----------|---------|
+| `CALLMEBOT_API_KEY` | From CallMeBot (after linking WhatsApp once). |
+| `WHATSAPP_NOTIFY_PHONE` | Digits only, e.g. `917993909809`. |
+
+See **`.env.example`**. Do not commit real secrets; `.env` is gitignored.
+
+---
+
+## Version 1 (baseline)
+
+Earlier release: **premium consultancy-style UI**, full-bleed hero (`/hero-premium.jpg`), glass lead form, countries carousel (initial four destinations), country and university flows, testimonials/CTA, `vercel.json` SPA routing.
 
 ---
 
@@ -57,7 +96,7 @@ Other scripts: `npm run build`, `npm run preview`, `npm run lint`, `npm run test
 
 ## Environment variables
 
-There is no committed `.env` yet. If you add serverless or client secrets later, use **Vite** prefixes for public browser vars: `VITE_*` and read them with `import.meta.env.VITE_*`.
+Server-side secrets (CallMeBot) live only in **Vercel** or local `.env` (not committed). For **public** browser variables, use **Vite** prefixes: `VITE_*` and `import.meta.env.VITE_*`.
 
 Do **not** commit secrets.
 
@@ -65,8 +104,9 @@ Do **not** commit secrets.
 
 ## Assets
 
-- **Hero:** `public/hero-premium.jpg` and `src/assets/hero-students.jpg`
-- **Country slider:** `public/countries/kyrgyzstan.jpg`, `russia.jpg`, `georgia.jpg`, `kazakhstan.jpg` (filename must match **slug** in `src/data/country-slides.ts`)
+- **Logo:** `public/logo-trinethra.png`
+- **Hero:** `public/hero-premium.jpg` and `public/hero-students.jpg` (second slide; also under `src/assets/` if duplicated for bundling)
+- **Country slider:** `public/countries/{slug}.jpg` — filenames must match **slug** in `src/data/country-slides.ts` (includes `kyrgyzstan`, `russia`, `georgia`, `kazakhstan`, `uk`, `usa`, `new-zealand`, `germany`, `canada`)
 
 ---
 

@@ -29,6 +29,7 @@ const UniversityLeadPage = () => {
             <div className="mt-6">
               <LeadForm
                 submitLabel="Continue to university details"
+                leadContext={`Interest in university: ${university.name}`}
                 onSuccess={() => navigate(`/university/${university.slug}`)}
               />
             </div>

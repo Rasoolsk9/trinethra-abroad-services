@@ -1,4 +1,4 @@
-/** Country slides: optional image in /public/countries/{slug}.jpg — upload your own for best look */
+/** Destinations: images optional at /public/countries/{slug}.jpg — missing images use carousel fallback */
 export const countrySlides = [
   {
     slug: "kyrgyzstan",
@@ -24,7 +24,39 @@ export const countrySlides = [
     iso2: "kz",
     blurb: "Modern campuses · NMC listed",
   },
+  {
+    slug: "uk",
+    name: "UK",
+    iso2: "gb",
+    blurb: "GMC-recognised · Global pathways",
+  },
+  {
+    slug: "usa",
+    name: "USA",
+    iso2: "us",
+    blurb: "Clinical excellence · Research-led",
+  },
+  {
+    slug: "new-zealand",
+    name: "New Zealand",
+    iso2: "nz",
+    blurb: "Quality of life · English medium",
+  },
+  {
+    slug: "germany",
+    name: "Germany",
+    iso2: "de",
+    blurb: "EU degrees · Strong healthcare",
+  },
+  {
+    slug: "canada",
+    name: "Canada",
+    iso2: "ca",
+    blurb: "Recognised programs · Diverse cities",
+  },
 ] as const;
+
+export type CountrySlide = (typeof countrySlides)[number];
 
 export function countryImageUrl(slug: string): string {
   return `/countries/${slug}.jpg`;

@@ -8,17 +8,26 @@ const legalLinks = [
 
 export const Footer = () => {
   return (
-    <footer id="contact" className="border-t border-border/70 bg-white">
+    <footer
+      id="contact"
+      className="scroll-mt-[calc(4.25rem+env(safe-area-inset-top,0px))] border-t border-border/70 bg-white md:scroll-mt-[calc(5rem+env(safe-area-inset-top,0px))]"
+    >
       <div className="container-custom py-10">
         <div className="flex flex-col items-start justify-between gap-6 md:flex-row md:items-center">
           <div>
-            <div className="mb-2 flex items-center gap-2">
-              <div className="flex h-9 w-9 items-center justify-center rounded-lg bg-gradient-hero">
-                <span className="text-base font-bold text-white">T</span>
-              </div>
+            <div className="mb-2 flex items-center gap-3">
+              <img
+                src="/logo-trinethra.png"
+                alt=""
+                className="h-11 w-auto max-w-[11rem] object-contain object-left sm:h-12 sm:max-w-[12rem]"
+                width={220}
+                height={64}
+                decoding="async"
+              />
               <div>
-                <span className="block font-heading text-base font-bold text-foreground">Trinethra Edu Services</span>
-                <span className="text-xs text-muted-foreground">A plan for every dream</span>
+                <span className="brand-wordmark-primary block text-base sm:text-lg">Trinethra</span>
+                <span className="brand-wordmark-sub mt-0.5 block text-xs sm:text-sm">Edu Services</span>
+                <span className="mt-1 block text-xs text-muted-foreground">A plan for every dream</span>
               </div>
             </div>
             <p className="max-w-xl text-sm text-muted-foreground">

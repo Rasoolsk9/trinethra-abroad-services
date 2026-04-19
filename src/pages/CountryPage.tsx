@@ -254,6 +254,154 @@ const countryData: Record<string, {
       { item: "Total 5-6 Year Cost", cost: "₹1.8 - 3.5 Crores" },
     ],
   },
+  usa: {
+    name: "United States",
+    flag: "🇺🇸",
+    description:
+      "Pursue MD or equivalent pathways in the USA with structured pre-med and graduate medical education. World-class hospitals, research, and global recognition.",
+    highlights: [
+      { icon: Clock, label: "Pathway", value: "4 Yrs + Residency" },
+      { icon: Wallet, label: "Tuition (indicative)", value: "Varies by program" },
+      { icon: Globe, label: "Language", value: "English" },
+      { icon: GraduationCap, label: "Recognition", value: "ECFMG, WHO" },
+    ],
+    about: [
+      "The USA offers highly competitive medical education with emphasis on clinical skills and research.",
+      "Indian students typically pursue undergraduate pre-medical studies followed by MD programs; pathways and exams (MCAT, USMLE) apply.",
+      "Trinethra helps you understand timelines, budgeting, and documentation for a realistic study plan.",
+    ],
+    universities: [
+      { name: "Explore partner pathways", slug: "usa-pathways", city: "Multiple", established: 1900, recognition: ["ECFMG", "WHO"], tuitionFee: "Contact for latest" },
+    ],
+    eligibility: [
+      "Strong academic record in science stream",
+      "English proficiency (TOEFL/IELTS where required)",
+      "Standardised tests as per program (e.g. MCAT)",
+      "Financial proof and valid passport",
+    ],
+    documents: [
+      "Academic transcripts",
+      "Test scores",
+      "SOP / CV as required",
+      "Passport",
+      "Financial documents",
+    ],
+    feeStructure: [
+      { item: "Program fees", cost: "Varies widely by university & state" },
+      { item: "Living costs", cost: "Contact for estimate" },
+    ],
+  },
+  "new-zealand": {
+    name: "New Zealand",
+    flag: "🇳🇿",
+    description:
+      "Study medicine in New Zealand with high-quality universities, safe cities, and English-medium instruction in a welcoming environment.",
+    highlights: [
+      { icon: Clock, label: "Duration", value: "6 Years typical" },
+      { icon: Wallet, label: "Fees (indicative)", value: "NZD — contact us" },
+      { icon: Globe, label: "Language", value: "English" },
+      { icon: GraduationCap, label: "Recognition", value: "WHO, NZMC" },
+    ],
+    about: [
+      "New Zealand offers internationally respected medical programs with strong clinical training.",
+      "Admission is competitive; academic excellence and English proficiency are essential.",
+      "We support you with shortlisting, applications, and visa guidance.",
+    ],
+    universities: [
+      { name: "University of Auckland", slug: "auckland-med", city: "Auckland", established: 1883, recognition: ["WHO", "NZMC"], tuitionFee: "Contact" },
+      { name: "University of Otago", slug: "otago-med", city: "Dunedin", established: 1869, recognition: ["WHO", "NZMC"], tuitionFee: "Contact" },
+    ],
+    eligibility: [
+      "Excellent 12th / equivalent results in sciences",
+      "English proficiency (IELTS/TOEFL)",
+      "UCAT or institution-specific tests",
+      "Interview where applicable",
+    ],
+    documents: [
+      "Transcripts",
+      "English test scores",
+      "Passport",
+      "References",
+    ],
+    feeStructure: [
+      { item: "Tuition (per year)", cost: "Contact for latest NZD figures" },
+      { item: "Living costs", cost: "Varies by city" },
+    ],
+  },
+  germany: {
+    name: "Germany",
+    flag: "🇩🇪",
+    description:
+      "Medical studies in Germany combine rigorous academics with access to Europe’s healthcare system. Many programs require strong German proficiency.",
+    highlights: [
+      { icon: Clock, label: "Duration", value: "6+ Years" },
+      { icon: Wallet, label: "Public fees", value: "Low admin fees*" },
+      { icon: Globe, label: "Language", value: "German (most programs)" },
+      { icon: GraduationCap, label: "Recognition", value: "EU, WHO" },
+    ],
+    about: [
+      "Germany is known for structured medical training and hospital exposure.",
+      "Most clinical programs are taught in German; plan language preparation early.",
+      "We guide you on recognition pathways and realistic timelines for Indian students.",
+    ],
+    universities: [
+      { name: "Heidelberg University", slug: "heidelberg-med", city: "Heidelberg", established: 1386, recognition: ["EU", "WHO"], tuitionFee: "State-dependent" },
+      { name: "Charité – Berlin", slug: "charite-berlin", city: "Berlin", established: 1710, recognition: ["EU", "WHO"], tuitionFee: "State-dependent" },
+    ],
+    eligibility: [
+      "Strong academics in PCB",
+      "German language proficiency (TestDaF/DSH) for most programs",
+      "Valid qualifications for university entry",
+      "Financial proof for visa",
+    ],
+    documents: [
+      "Academic records",
+      "Language certificates",
+      "Passport",
+      "Blocked account / funds proof",
+    ],
+    feeStructure: [
+      { item: "Semester contribution", cost: "Varies by federal state" },
+      { item: "Living costs (per year)", cost: "€10k–€12k indicative" },
+    ],
+  },
+  canada: {
+    name: "Canada",
+    flag: "🇨🇦",
+    description:
+      "Medical education in Canada is highly competitive with excellent clinical training and post-study pathways. English or French programs depending on province.",
+    highlights: [
+      { icon: Clock, label: "Duration", value: "3–4 Yrs med + UG" },
+      { icon: Wallet, label: "Tuition", value: "CAD — contact us" },
+      { icon: Globe, label: "Language", value: "English / French" },
+      { icon: GraduationCap, label: "Recognition", value: "WHO, MCC" },
+    ],
+    about: [
+      "Canadian medical schools are among the most selective globally.",
+      "We help you understand prerequisites, MCAT, and realistic pathway options.",
+      "Early planning improves outcomes for international applicants.",
+    ],
+    universities: [
+      { name: "University of Toronto", slug: "uoft-med", city: "Toronto", established: 1827, recognition: ["WHO", "MCC"], tuitionFee: "Contact" },
+      { name: "McGill University", slug: "mcgill-med", city: "Montreal", established: 1821, recognition: ["WHO", "MCC"], tuitionFee: "Contact" },
+    ],
+    eligibility: [
+      "Outstanding undergraduate record",
+      "MCAT and CASPer where required",
+      "English/French proficiency",
+      "Strong extracurricular & interview performance",
+    ],
+    documents: [
+      "Transcripts",
+      "MCAT scores",
+      "Passport",
+      "Proof of funds",
+    ],
+    feeStructure: [
+      { item: "Tuition (per year)", cost: "CAD — contact for latest" },
+      { item: "Living costs", cost: "Varies by province" },
+    ],
+  },
 };
 
 const CountryPage = () => {

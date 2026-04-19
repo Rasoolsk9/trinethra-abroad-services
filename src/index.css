@@ -45,6 +45,11 @@
     --gold: 45 90% 55%;
     --success: 145 60% 45%;
 
+    /* Indian tricolor accents (UI hints — official approximations) */
+    --india-saffron: 33 100% 50%;
+    --india-green: 145 79% 26%;
+    --india-ashoka: 215 80% 35%;
+
     /* Gradients */
     --gradient-hero: linear-gradient(135deg, hsl(215 80% 25%) 0%, hsl(215 70% 35%) 50%, hsl(175 60% 35%) 100%);
     --gradient-card: linear-gradient(180deg, hsl(0 0% 100%) 0%, hsl(210 20% 98%) 100%);
@@ -70,6 +75,12 @@
     --sidebar-accent-foreground: 240 5.9% 10%;
     --sidebar-border: 220 13% 91%;
     --sidebar-ring: 217.2 91.2% 59.8%;
+
+    /* Page backdrop: soft base + faint tricolor glow */
+    --page-atmosphere:
+      radial-gradient(1000px 520px at 100% -5%, hsla(var(--india-saffron) / 0.09) 0%, transparent 55%),
+      radial-gradient(800px 480px at 0% 105%, hsla(var(--india-green) / 0.07) 0%, transparent 50%),
+      linear-gradient(180deg, hsl(210 22% 98.5%) 0%, hsl(210 20% 98%) 45%, hsl(145 16% 97.5%) 100%);
   }
 
   .dark {
@@ -109,6 +120,8 @@
     --sidebar-accent-foreground: 240 4.8% 95.9%;
     --sidebar-border: 240 3.7% 15.9%;
     --sidebar-ring: 217.2 91.2% 59.8%;
+
+    --page-atmosphere: linear-gradient(180deg, hsl(215 50% 9%) 0%, hsl(215 48% 11%) 100%);
   }
 }
 
@@ -117,12 +130,29 @@
     @apply border-border;
   }
 
+  html {
+    @apply scroll-smooth;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    html {
+      scroll-behavior: auto;
+    }
+  }
+
   body {
-    @apply bg-background text-foreground font-sans antialiased;
+    @apply text-foreground font-sans antialiased;
+    background-color: hsl(var(--background));
+    /* Subtle saffron / white / green atmosphere (premium, not loud) */
+    background-image: var(--page-atmosphere);
   }
 
   h1, h2, h3, h4, h5, h6 {
     @apply font-heading font-bold tracking-tight;
+  }
+
+  :where(a, button, summary) {
+    @apply transition-[color,background-color,border-color,box-shadow,opacity,transform] duration-200 ease-out;
   }
 }
 
@@ -153,12 +183,124 @@
     @apply bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent;
   }
 
+  /* About page: full-width tricolor band + dark veil for accessible white headlines */
+  .about-india-surface {
+    @apply relative overflow-hidden;
+  }
+
+  .about-india-surface__tricolor {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+      118deg,
+      #ea580c 0%,
+      #ff9933 16%,
+      #ffe4c4 32%,
+      #ffffff 48%,
+      #e8f5e9 56%,
+      #4ade80 72%,
+      #138808 100%
+    );
+  }
+
+  .about-india-surface__veil {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+      to bottom,
+      rgba(15, 23, 42, 0.58) 0%,
+      rgba(15, 23, 42, 0.38) 45%,
+      rgba(15, 23, 42, 0.52) 100%
+    );
+  }
+
+  /**
+   * Indian flag–inspired wordmark: saffron → navy (Ashoka blue band, readable on white) → green.
+   */
+  .brand-wordmark-primary {
+    @apply font-heading text-transparent antialiased;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    line-height: 1.06;
+    background-image: linear-gradient(
+      93deg,
+      #e65100 0%,
+      #ff9933 20%,
+      #4c65a9 40%,
+      #5070b3 48%,
+      #8da7ef 52%,
+      #16a34a 74%,
+      #138808 100%
+    );
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-stroke: 0.35px rgba(15, 23, 42, 0.12);
+    filter: drop-shadow(0 0 1px rgba(15, 23, 42, 0.2))
+      drop-shadow(0 1px 1px rgba(255, 255, 255, 0.55))
+      drop-shadow(0 2px 3px rgba(15, 40, 80, 0.1))
+      drop-shadow(0 0 12px rgba(255, 153, 51, 0.28))
+      drop-shadow(0 0 14px rgba(37, 99, 235, 0.2))
+      drop-shadow(0 0 14px rgba(19, 136, 8, 0.22));
+  }
+
+  .brand-wordmark-sub {
+    @apply font-heading text-transparent antialiased;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.16em;
+    line-height: 1.2;
+    background-image: linear-gradient(
+      93deg,
+      #ea580c 0%,
+      #fb923c 18%,
+      #5f7fde 38%,
+      #485770 50%,
+      #15803d 72%,
+      #138808 100%
+    );
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-stroke: 0.3px rgba(15, 23, 42, 0.1);
+    filter: drop-shadow(0 0 1px rgba(15, 23, 42, 0.18))
+      drop-shadow(0 1px 1px rgba(255, 255, 255, 0.5))
+      drop-shadow(0 1px 2px rgba(15, 40, 80, 0.08))
+      drop-shadow(0 0 10px rgba(255, 153, 51, 0.22))
+      drop-shadow(0 0 12px rgba(59, 130, 246, 0.18))
+      drop-shadow(0 0 12px rgba(19, 136, 8, 0.18));
+  }
+
   .floating-cta {
     @apply fixed bottom-6 right-6 z-50 flex flex-col gap-3;
   }
 
   .consult-blink {
     animation: consultPulse 1.15s ease-in-out infinite;
+  }
+
+  /** WhatsApp CTA — premium: deep navy → petrol teal (single smooth gradient, readable on mobile) */
+  .btn-consult-premium {
+    @apply rounded-full font-semibold text-white;
+    background: linear-gradient(
+      135deg,
+      #0a1628 0%,
+      #0f2847 18%,
+      #134e5c 52%,
+      #0d9488 88%,
+      #14b8a6 100%
+    );
+    box-shadow:
+      0 4px 16px rgba(15, 23, 42, 0.35),
+      0 1px 0 rgba(255, 255, 255, 0.12) inset;
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.25);
+  }
+
+  .btn-consult-premium:hover {
+    filter: brightness(1.07);
+    box-shadow:
+      0 6px 22px rgba(15, 23, 42, 0.4),
+      0 1px 0 rgba(255, 255, 255, 0.15) inset;
   }
 
   /* Hero: alternating enter — slide (horizontal) vs fade */
@@ -193,12 +335,19 @@
 }
 
 @keyframes consultPulse {
-  0%, 100% {
-    box-shadow: 0 0 0 0 rgba(3, 108, 176, 0.55), 0 8px 18px rgba(0, 0, 0, 0.2);
+  0%,
+  100% {
+    box-shadow:
+      0 0 0 0 rgba(13, 148, 136, 0.4),
+      0 0 0 0 rgba(15, 23, 42, 0.15),
+      0 4px 16px rgba(15, 23, 42, 0.3);
     transform: scale(1);
   }
   50% {
-    box-shadow: 0 0 0 10px rgba(3, 108, 176, 0), 0 8px 18px rgba(0, 0, 0, 0.2);
-    transform: scale(1.03);
+    box-shadow:
+      0 0 0 8px rgba(13, 148, 136, 0),
+      0 0 0 4px rgba(15, 23, 42, 0),
+      0 6px 20px rgba(15, 23, 42, 0.35);
+    transform: scale(1.02);
   }
 }
