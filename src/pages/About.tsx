@@ -1,202 +1,178 @@
-import type { ReactNode } from "react";
 import { Layout } from "@/components/layout/Layout";
 import { Helmet } from "react-helmet-async";
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
-import { Users, Award, Target, Heart, ArrowRight } from "lucide-react";
+import { ArrowRight } from "lucide-react";
+
+const impactStats = [
+  {
+    title: "7+ Years Experience",
+    description: "Guiding students with industry knowledge and expertise",
+  },
+  {
+    title: "1000+ Students Placed",
+    description: "Helping aspiring doctors start their journey abroad",
+  },
+  {
+    title: "30+ Partner Universities",
+    description: "Collaborating with recognized and trusted institutions",
+  },
+  {
+    title: "95% Success Rate",
+    description: "Strong track record of successful admissions",
+  },
+];
 
 const values = [
   {
-    icon: Heart,
     title: "Student-First Approach",
-    description: "Every decision we make is centered around what's best for our students and their future.",
-    accent: "saffron" as const,
+    description: "Every decision is focused on student success and long-term career growth",
   },
   {
-    icon: Award,
-    title: "Excellence & Quality",
-    description: "We partner only with universities that meet our strict quality and recognition standards.",
-    accent: "green" as const,
-  },
-  {
-    icon: Target,
     title: "Transparency",
-    description: "No hidden fees, no false promises. Complete honesty in all our dealings.",
-    accent: "saffron" as const,
+    description: "Clear guidance with no hidden costs or false commitments",
   },
   {
-    icon: Users,
-    title: "Lifetime Support",
-    description: "Our relationship doesn't end with admission. We support students throughout their journey.",
-    accent: "green" as const,
+    title: "Quality Guidance",
+    description: "We recommend only recognized and reliable universities",
+  },
+  {
+    title: "End-to-End Support",
+    description: "From counselling to admission and beyond, we stay with you",
   },
 ];
 
-const milestones = [
-  { year: "2014", title: "Founded", description: "Started with a vision to make quality medical education accessible" },
-  { year: "2016", title: "500+ Students", description: "Crossed 500 successful placements milestone" },
-  { year: "2018", title: "5 Countries", description: "Expanded partnerships to 5 countries" },
-  { year: "2020", title: "50+ Universities", description: "Partnered with over 50 medical universities" },
-  { year: "2023", title: "5000+ Students", description: "Helped 5000+ students achieve their dream" },
+const journey = [
+  {
+    year: "2018",
+    title: "Founded",
+    description: "Started with a vision to simplify MBBS abroad admissions",
+  },
+  {
+    year: "2020",
+    title: "200+ Students",
+    description: "Built trust through consistent results",
+  },
+  {
+    year: "2022",
+    title: "Expanded Network",
+    description: "Partnered with multiple universities across countries",
+  },
+  {
+    year: "2025",
+    title: "1000+ Students",
+    description: "Reached a strong milestone in student success",
+  },
 ];
-
-const statCards = [
-  { value: "10+", label: "Years Experience", className: "bg-gradient-to-br from-[#ff9933] via-[#fb923c] to-[#ea580c] text-white shadow-lg ring-1 ring-white/20" },
-  { value: "5000+", label: "Students Placed", className: "bg-white text-foreground shadow-md ring-2 ring-[#138808]/35 border border-[#138808]/20" },
-  { value: "50+", label: "Partner Universities", className: "bg-gradient-to-br from-[#138808] via-[#16a34a] to-[#14532d] text-white shadow-lg ring-1 ring-white/15" },
-  { value: "98%", label: "Success Rate", className: "bg-gradient-to-br from-[#ff9933] to-[#138808] text-white shadow-lg ring-1 ring-white/20" },
-];
-
-function IndiaHeroShell({ children }: { children: ReactNode }) {
-  return (
-    <div className="about-india-surface py-16 md:py-24">
-      <div className="about-india-surface__tricolor" aria-hidden />
-      <div className="about-india-surface__veil" aria-hidden />
-      <div className="relative z-10">{children}</div>
-    </div>
-  );
-}
 
 const About = () => {
   return (
     <Layout>
       <Helmet>
-        <title>About Us | Trinethra Edu Services - MBBS Abroad Experts</title>
+        <title>About Trinethra Edu Services | MBBS Abroad Admissions</title>
         <meta
           name="description"
-          content="Learn about Trinethra Edu Services - 10+ years of experience in MBBS abroad admissions. Trusted by 5000+ students. Your partner in medical education abroad."
+          content="Your trusted partner for MBBS abroad admissions with transparent guidance and reliable support for Indian students."
         />
       </Helmet>
 
-      <IndiaHeroShell>
-        <div className="container-custom text-center text-white">
-          <h1 className="font-heading text-4xl drop-shadow-md md:text-5xl font-bold mb-4">
+      <section className="bg-gradient-hero py-16 text-white md:py-20">
+        <div className="container-custom text-center">
+          <h1 className="mb-4 font-heading text-4xl font-bold md:text-5xl">
             About Trinethra Edu Services
           </h1>
-          <p className="mx-auto max-w-3xl text-lg text-white/90 drop-shadow">
-            Your trusted partner for MBBS abroad admissions since 2014. We've helped over 5000 students achieve their dream of becoming doctors.
+          <p className="mx-auto max-w-3xl text-lg text-white/90">
+            Your trusted partner for MBBS abroad admissions. We are committed to helping Indian
+            students achieve their dream of becoming doctors through transparent guidance and reliable support.
           </p>
         </div>
-      </IndiaHeroShell>
+      </section>
 
       <section className="section-padding">
         <div className="container-custom">
-          <div className="grid items-center gap-12 lg:grid-cols-2">
-            <div>
-              <span className="mb-4 inline-block rounded-full bg-[#ff9933]/15 px-4 py-1.5 text-sm font-medium text-[#c2410c]">
-                Our Story
-              </span>
-              <h2 className="mb-6 font-heading text-3xl font-bold md:text-4xl">A Decade of Transforming Medical Education Dreams</h2>
-              <div className="space-y-4 text-muted-foreground">
-                <p>
-                  Trinethra Edu Services was founded in 2014 with a simple mission: to make quality medical education accessible to deserving Indian students,
-                  regardless of their financial background.
-                </p>
-                <p>
-                  We observed that many talented students were unable to pursue their dream of becoming doctors due to exorbitant fees in private medical colleges
-                  and limited seats in government institutions.
-                </p>
-                <p>
-                  Today, we are proud to have helped over 5000 students get admission to top NMC & WHO recognized medical universities across 5 countries. Our
-                  alumni are now practicing doctors in India and around the world.
-                </p>
+          <h2 className="mb-2 font-heading text-3xl font-bold md:text-4xl">Our Story</h2>
+          <h3 className="mb-6 text-xl font-semibold text-primary md:text-2xl">
+            Building Medical Careers with Trust and Transparency
+          </h3>
+          <div className="max-w-4xl space-y-4 text-muted-foreground">
+            <p>
+              Trinethra Edu Services was founded with a clear mission: to make quality medical
+              education abroad accessible and affordable for Indian students.
+            </p>
+            <p>
+              We recognized that many deserving students miss out on medical seats due to high fees
+              and limited government opportunities. Our goal is to bridge that gap by guiding students
+              toward globally recognized universities with the right support at every step.
+            </p>
+            <p>
+              Over the years, we have successfully guided <strong>1000+ students</strong> into NMC & WHO
+              recognized medical universities across multiple countries. Our students are now pursuing
+              their medical education with confidence and clarity.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <section className="section-padding bg-muted/30">
+        <div className="container-custom">
+          <h2 className="mb-8 text-center font-heading text-3xl font-bold md:text-4xl">Our Impact</h2>
+          <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+            {impactStats.map((item) => (
+              <div key={item.title} className="rounded-2xl border bg-card p-6 shadow-sm">
+                <h3 className="mb-2 text-lg font-bold text-primary">{item.title}</h3>
+                <p className="text-sm text-muted-foreground">{item.description}</p>
               </div>
-            </div>
-            <div className="grid grid-cols-2 gap-4">
-              {statCards.map((card) => (
-                <div key={card.label} className={`rounded-2xl p-6 text-center transition-transform duration-300 hover:scale-[1.02] ${card.className}`}>
-                  <p className={`mb-2 text-4xl font-bold ${card.className.includes("bg-white") ? "text-[#138808]" : "text-white"}`}>{card.value}</p>
-                  <p className={`text-sm ${card.className.includes("bg-white") ? "text-muted-foreground" : "text-white/90"}`}>{card.label}</p>
-                </div>
-              ))}
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <section className="section-padding bg-gradient-to-b from-orange-50/90 via-white to-green-50/90">
-        <div className="container-custom">
-          <div className="mx-auto mb-12 max-w-3xl text-center">
-            <span className="mb-4 inline-block rounded-full bg-[#138808]/12 px-4 py-1.5 text-sm font-medium text-[#166534]">Our Values</span>
-            <h2 className="mb-4 font-heading text-3xl font-bold md:text-4xl">What Drives Us</h2>
-          </div>
-
-          <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
-            {values.map((value) => {
-              const isSaffron = value.accent === "saffron";
-              return (
-                <div
-                  key={value.title}
-                  className="card-medical p-6 text-center transition-shadow duration-300 hover:shadow-lg"
-                >
-                  <div
-                    className={`mx-auto mb-4 flex h-14 w-14 items-center justify-center rounded-2xl ${
-                      isSaffron ? "bg-[#ff9933]/15 text-[#c2410c]" : "bg-[#138808]/12 text-[#166534]"
-                    }`}
-                  >
-                    <value.icon className="h-7 w-7" />
-                  </div>
-                  <h3 className="mb-2 font-heading text-lg font-semibold">{value.title}</h3>
-                  <p className="text-sm text-muted-foreground">{value.description}</p>
-                </div>
-              );
-            })}
+            ))}
           </div>
         </div>
       </section>
 
       <section className="section-padding">
         <div className="container-custom">
-          <div className="mx-auto mb-12 max-w-3xl text-center">
-            <span className="mb-4 inline-block rounded-full bg-[#ff9933]/15 px-4 py-1.5 text-sm font-medium text-[#c2410c]">Our Journey</span>
-            <h2 className="mb-4 font-heading text-3xl font-bold md:text-4xl">Milestones</h2>
-          </div>
-
-          <div className="relative">
-            <div
-              className="absolute left-1/2 hidden h-full w-1 -translate-x-1/2 rounded-full bg-gradient-to-b from-[#ff9933] via-white to-[#138808] shadow-sm md:block"
-              aria-hidden
-            />
-            <div className="space-y-8">
-              {milestones.map((milestone, index) => (
-                <div key={milestone.year} className={`flex items-center gap-8 ${index % 2 === 0 ? "md:flex-row" : "md:flex-row-reverse"}`}>
-                  <div className={`flex-1 ${index % 2 === 0 ? "md:text-right" : "md:text-left"}`}>
-                    <div className="card-medical inline-block p-6 transition-transform duration-300 hover:shadow-md">
-                      <span className="bg-gradient-to-r from-[#c2410c] to-[#138808] bg-clip-text text-2xl font-bold text-transparent">
-                        {milestone.year}
-                      </span>
-                      <h3 className="mt-1 font-heading text-lg font-semibold">{milestone.title}</h3>
-                      <p className="mt-1 text-sm text-muted-foreground">{milestone.description}</p>
-                    </div>
-                  </div>
-                  <div
-                    className="relative z-10 hidden h-4 w-4 shrink-0 rounded-full border-4 border-white shadow-md md:flex md:items-center md:justify-center"
-                    style={{
-                      background: index % 2 === 0 ? "linear-gradient(135deg, #ff9933, #ea580c)" : "linear-gradient(135deg, #22c55e, #138808)",
-                    }}
-                  />
-                  <div className="hidden flex-1 md:block" />
-                </div>
-              ))}
-            </div>
+          <h2 className="mb-2 font-heading text-3xl font-bold md:text-4xl">Our Values</h2>
+          <h3 className="mb-8 text-xl font-semibold text-primary md:text-2xl">What Drives Us</h3>
+          <div className="grid gap-4 md:grid-cols-2">
+            {values.map((item) => (
+              <div key={item.title} className="rounded-2xl border bg-card p-6 shadow-sm">
+                <h4 className="mb-2 font-heading text-lg font-semibold">{item.title}</h4>
+                <p className="text-sm text-muted-foreground">{item.description}</p>
+              </div>
+            ))}
           </div>
         </div>
       </section>
 
-      <IndiaHeroShell>
-        <div className="container-custom text-center text-white">
-          <h2 className="mb-4 font-heading text-3xl font-bold drop-shadow-md">Ready to Start Your Journey?</h2>
-          <p className="mx-auto mb-8 max-w-2xl text-white/90 drop-shadow">Join 5000+ students who trusted us with their medical education dreams.</p>
-          <Button
-            asChild
-            className="rounded-xl bg-white px-8 py-6 font-semibold text-[#138808] shadow-lg transition-all duration-300 hover:bg-white/95 hover:shadow-xl"
-          >
+      <section className="section-padding bg-muted/30">
+        <div className="container-custom">
+          <h2 className="mb-8 text-center font-heading text-3xl font-bold md:text-4xl">Our Journey</h2>
+          <div className="mx-auto max-w-3xl space-y-4">
+            {journey.map((item) => (
+              <div key={`${item.year}-${item.title}`} className="rounded-2xl border bg-card p-6 shadow-sm">
+                <p className="text-sm font-bold text-primary">
+                  {item.year} - {item.title}
+                </p>
+                <p className="mt-1 text-sm text-muted-foreground">{item.description}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section className="bg-gradient-hero py-16 text-white">
+        <div className="container-custom text-center">
+          <h2 className="mb-4 font-heading text-3xl font-bold md:text-4xl">
+            Ready to Start Your Medical Journey?
+          </h2>
+          <p className="mx-auto mb-8 max-w-2xl text-white/90">
+            Join hundreds of students who trusted us for their MBBS abroad admissions.
+          </p>
+          <Button asChild className="btn-hero">
             <Link to="/free-counselling">
-              Get Free Counselling <ArrowRight className="ml-2 h-5 w-5" />
+              Get Free Counselling Today <ArrowRight className="ml-2 h-5 w-5" />
             </Link>
           </Button>
         </div>
-      </IndiaHeroShell>
+      </section>
     </Layout>
   );
 };

@@ -1,65 +1,65 @@
 /** Destinations: images optional at /public/countries/{slug}.jpg — missing images use carousel fallback */
 export const countrySlides = [
   {
-    slug: "kyrgyzstan",
-    name: "Kyrgyzstan",
-    iso2: "kg",
-    blurb: "Affordable MBBS · English medium",
-  },
-  {
-    slug: "russia",
-    name: "Russia",
-    iso2: "ru",
-    blurb: "World-class medical universities",
-  },
-  {
-    slug: "georgia",
-    name: "Georgia",
-    iso2: "ge",
-    blurb: "European-standard education",
-  },
-  {
-    slug: "kazakhstan",
-    name: "Kazakhstan",
-    iso2: "kz",
-    blurb: "Modern campuses · NMC listed",
-  },
-  {
     slug: "uk",
     name: "UK",
     iso2: "gb",
-    blurb: "GMC-recognised · Global pathways",
-  },
-  {
-    slug: "usa",
-    name: "USA",
-    iso2: "us",
-    blurb: "Clinical excellence · Research-led",
-  },
-  {
-    slug: "new-zealand",
-    name: "New Zealand",
-    iso2: "nz",
-    blurb: "Quality of life · English medium",
-  },
-  {
-    slug: "germany",
-    name: "Germany",
-    iso2: "de",
-    blurb: "EU degrees · Strong healthcare",
+    blurb: "Top universities and global careers",
   },
   {
     slug: "canada",
     name: "Canada",
     iso2: "ca",
-    blurb: "Recognised programs · Diverse cities",
+    blurb: "Quality education and student support",
+  },
+  {
+    slug: "new-zealand",
+    name: "New Zealand",
+    iso2: "nz",
+    blurb: "Safe campuses with practical learning",
+  },
+  {
+    slug: "germany",
+    name: "Germany",
+    iso2: "de",
+    blurb: "European pathways and strong academics",
+  },
+  {
+    slug: "australia",
+    name: "Australia",
+    iso2: "au",
+    blurb: "Industry-ready programs and support",
+  },
+  {
+    slug: "kyrgyzstan",
+    name: "Kyrgyzstan",
+    iso2: "kg",
+    blurb: "International study pathways",
+  },
+  {
+    slug: "russia",
+    name: "Russia",
+    iso2: "ru",
+    blurb: "Established universities and options",
+  },
+  {
+    slug: "central-america-caribbean",
+    name: "Central America / Caribbean",
+    iso2: "bb",
+    blurb: "Caribbean destination options",
   },
 ] as const;
 
 export type CountrySlide = (typeof countrySlides)[number];
 
+/** Filenames in /public/countries may differ from route slugs */
+const COUNTRY_IMAGE_FILE: Record<string, string> = {
+  "central-america-caribbean": "central-america",
+};
+
 export function countryImageUrl(slug: string): string {
-  return `/countries/${slug}.jpg`;
+  const file = COUNTRY_IMAGE_FILE[slug] ?? slug;
+  return `/countries/${file}.jpg`;
 }
 
 export function flagUrl(iso2: string, size: 80 | 160 = 80): string {

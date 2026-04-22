@@ -20,7 +20,7 @@ const UniversityDetailsPage = () => {
         <meta name="description" content={university.overview} />
       </Helmet>
 
-      <section className="bg-[#f6fbff] py-12 md:py-16">
+      <section className="bg-muted/35 py-12 md:py-16">
         <div className="container-custom">
           <div className="rounded-3xl border border-border/70 bg-white p-6 shadow-sm md:p-8">
             <div className="flex flex-wrap items-center gap-3">

@@ -4,63 +4,92 @@ Official marketing site for **Trinethra Edu Services** — MBBS abroad guidance 
 
 **Repository:** [github.com/Rasoolsk9/trinethra-abroad-services](https://github.com/Rasoolsk9/trinethra-abroad-services)
 
+| | |
+|---|---|
+| **Current release** | **v3.0.0** (final project, April 2026) |
+| **Deploy target** | [Vercel](https://vercel.com) (Vite static build → `dist/`) |
+| **CI** | GitHub Actions (`lint` → `test` → `build` → Playwright → Lighthouse CI) |
+
 ---
 
-## Version 2 (April 2026)
+## Version 3.0.0 — Final project (April 2026)
 
-Premium branding, expanded destinations, reliable navigation, server-side lead delivery to WhatsApp, and production performance tuning for Vercel.
+This release is **production- and Vercel-ready**: performance tuning, quality gates, accessibility fixes, lead flows, and polished UX on home and country experiences.
 
-### Brand & layout
+### Content & brand
 
-- **Logo:** `public/logo-trinethra.png` in navbar and footer (replaces placeholder “T” icon).
-- **Wordmark:** “TRINETHRA / EDU SERVICES” with **Indian tricolor–inspired** gradient (saffron → **navy** → green) for contrast on light glass; responsive sizing.
-- **Consult CTA:** **Premium** navy-to-teal gradient button (`.btn-consult-premium`) with subtle pulse — no loud flag stripes on the pill.
-- **About page:** Hero and CTA bands use **tricolor-inspired** gradients; stat cards and milestones updated for the same theme.
+- **Testimonials** use real **profile images** from `public/student-profile/` (circular avatars) mapped in `TestimonialsSection`.
+- **Home trust stats** (`WhyChooseSection`): **60+** university partners, **1000+** success stories (with animated count-up).
+- **Contact** aligned site-wide: **+91-799390909** in footer, floating CTAs, free counselling, and WhatsApp deep links (`91799390909`).
+- **Navbar** uses a **consistent premium white / glass** header on every route (including About and country pages), not a different gradient on inner pages.
+- **Gallery** section: student & campus images under `public/gallery/`.
+- **Country imagery** under `public/countries/` (e.g. Australia, Central America); older unused assets removed where replaced.
 
-### Navigation & UX
+### Home page performance & UX
 
-- **`ScrollToHash`:** Hash links (`/#countries`, `/#contact`) work after SPA navigation (e.g. from `/about`); **scroll-margin** on `#home`, `#countries`, `#contact` so the fixed navbar does not cover section titles.
-- **Countries menu:** Dropdown (desktop) and collapsible list (mobile) with **FlagCDN** flags next to each destination; “View all destinations” links to `/#countries`.
+- **Code splitting:** Everything after the **hero** loads in a lazy chunk (`HomePageLazy.tsx`) so the first screen stays light (smaller main bundle, better LCP / TBT).
+- **Loading state:** `HomePageFallback` shows a **structured skeleton** (destinations, stats, cards, gallery hints) with a subtle **shimmer** — not a blank block.
+- **Idle preload:** `requestIdleCallback` can preload the deferred home chunk for a shorter wait before sections appear.
+- **Mount animation:** Deferred sections use `.home-deferred-sections` (fade + soft lift; respects `prefers-reduced-motion`).
 
-### Destinations
+### Countries carousel (destinations)
 
-- **Nine countries** in `src/data/country-slides.ts` and navbar: Kyrgyzstan, Russia, Georgia, Kazakhstan, **UK, USA, New Zealand, Germany, Canada**.
-- **Country pages** extended in `src/pages/CountryPage.tsx` for the new slugs (routes: `/mbbs-in-{slug}`).
-- **Countries carousel:** `translate3d` track, **swipe** on touch, **prev/next arrows on mobile**, dot indicators with padding; second hero image loaded from `public/hero-students.jpg` after idle (smaller initial JS payload).
-
-### Hero content
-
-- Slide 2 headline and copy updated to **global study-abroad** messaging (trusted experts, transparency, end-to-end support) with a premium left-border layout on large screens.
+- **Prev / next** controls sit **inside** the image frame, **vertically centered** on the **left and right** (not offset by extra UI below the slide).
+- **Dot pagination removed**; navigation is arrows, **auto-rotate**, and **swipe** on touch.
+- Arrows use higher **z-index** and stop click propagation so they don’t fight the slide link.
 
 ### Lead capture
 
-- **`LeadForm`** submits to **`POST /api/lead`** (Vercel serverless, `api/lead.ts`).
-- Leads are forwarded to **your WhatsApp** via **[CallMeBot](https://www.callmebot.com/)** — the visitor does **not** open WhatsApp to compose; they see an in-page **thank you** message.
-- **`UniversityLeadPage`** passes `leadContext` (university name) into the notification; `onSuccess` still runs after a short delay for navigation to the university detail page.
+- **`LeadForm`** posts to **`POST /api/lead`** (Vercel serverless, `api/lead.ts`) with optional `leadContext` (e.g. university interest on apply flows).
+- **CallMeBot** can deliver to your WhatsApp; visitors see an in-page **thank you** state.
+- **Dev:** If the API is unavailable, the form can still complete in development (see `LeadForm` + run `vercel dev` for full API tests).
+- **Hero form** submit uses a **darker green** for WCAG contrast; **country `<Select>`** is wired with proper `id` / label / `aria-labelledby` for screen readers.
 
-### Performance & deploy
+### Quality assurance & CI (GitHub)
 
-- **`App.tsx`:** Lazy-loaded routes (except home) + React Query defaults tuned.
-- **`index.html`:** Preconnect/preload for fonts and LCP hero image; `dns-prefetch` for FlagCDN.
-- **`vercel.json`:** Long-cache headers for hashed `/assets/*` and images; SPA rewrite to `index.html` (API routes are handled by Vercel before the rewrite).
-- **`vite.config.ts`:** `manualChunks` for `vendor-react`, `target: es2020`, `cssMinify: true`.
+- **ESLint** on the TypeScript / React source.
+- **Vitest** unit tests.
+- **Playwright** smoke tests (`e2e/smoke.spec.ts`):
+  - Home loads (hero + destinations heading),
+  - Country page: `/mbbs-in-uk`,
+  - University lead path: apply form + mocked `POST /api/lead` → thank you → redirect to university details.
+- **Lighthouse CI** (`lighthouserc.cjs`) runs on the **production build** (preview + key URLs) with **warn**-level category thresholds (stable on CI runners).
+- Workflow: **`.github/workflows/ci.yml`** on push/PR to `main` / `master` / `develop` (Node 20, `npm ci`).
 
-### Environment variables (Vercel)
+**Local:** `npm run test:e2e` (runs `build` then Playwright). **Lighthouse:** `npm run build && npm run lighthouse:ci` (Chromium; `CHROME_PATH` set in CI from Playwright’s cache).
 
-For `/api/lead` to deliver to WhatsApp, set in the Vercel project:
+### Performance & static assets
 
-| Variable | Purpose |
-|----------|---------|
-| `CALLMEBOT_API_KEY` | From CallMeBot (after linking WhatsApp once). |
-| `WHATSAPP_NOTIFY_PHONE` | Digits only, e.g. `917993909809`. |
+- **Fonts:** Google Fonts (DM Sans + Inter) loaded from **`index.html`** (preconnect + stylesheet); not blocking via CSS `@import`.
+- **LCP:** `index.html` preloads the primary hero image (`/hero-premium.jpg`).
+- **Images:** Lazy loading, `decoding="async"`, and `sizes` where helpful (gallery, country slides, cards).
+- **Vite `build`:** `vendor-react` chunk (React, DOM, router, React Query), `es2020`, CSS minify.
+- **`vercel.json`:** Security headers, long cache for `/assets/*` and static images, SPA fallback to `index.html`, **`/favicon.ico`** rewrite to the logo (plus `public/favicon.ico` / `link` to `logo-trinethra.png` for clean console).
 
-See **`.env.example`**. Do not commit real secrets; `.env` is gitignored.
+### Vercel deployment (ready to use)
+
+1. **Push** this repository to GitHub (this README assumes branch **`main`** is the deploy branch).
+2. [vercel.com](https://vercel.com) → **Add New…** → **Project** → import **trinethra-abroad-services**.
+3. **Framework:** Vite (auto-detected). **Build command:** `npm run build`. **Output directory:** `dist`.
+4. **Node:** Use **20.x** (matches CI); optional `engines` in `package.json` enforces `>=20`.
+5. **Environment variables** (Project → Settings → Environment Variables) — see table below. Redeploy after adding secrets.
+6. **Custom domain:** Project → **Domains** (optional).
+7. **GitHub:** Enable **branch protection** on `main` and require the **CI** workflow to pass before merge, if you want production deploys only after green checks.
+
+Vercel runs **`npm run build`** by default; it does not run E2E on the platform—those run in **GitHub Actions**. Keeping both gives fast deploys plus verified quality on each PR.
 
 ---
 
-## Version 1 (baseline)
+## Environment variables (Vercel & local)
 
-Earlier release: **premium consultancy-style UI**, full-bleed hero (`/hero-premium.jpg`), glass lead form, countries carousel (initial four destinations), country and university flows, testimonials/CTA, `vercel.json` SPA routing.
+Server-side only (never commit real values; use Vercel dashboard or local `.env`).
+
+| Variable | Purpose |
+|----------|---------|
+| `CALLMEBOT_API_KEY` | From [CallMeBot](https://www.callmebot.com/) after you link WhatsApp. |
+| `WHATSAPP_NOTIFY_PHONE` | Digits only, e.g. `91799390909` (notify number for `/api/lead`). |
+
+Copy from **`.env.example`**. For client-side public vars, use the `VITE_` prefix and `import.meta.env`.
 
 ---
 
@@ -68,18 +97,36 @@ Earlier release: **premium consultancy-style UI**, full-bleed hero (`/hero-premi
 
 | Layer | Choice |
 |--------|--------|
-| Framework | React 18 + TypeScript |
+| UI | React 18 + TypeScript |
 | Build | Vite 5 |
-| Routing | React Router v6 |
-| UI | shadcn/ui (Radix) + Tailwind CSS |
+| Routing | React Router v6 (lazy route chunks) |
+| Styling | Tailwind CSS + shadcn/ui (Radix) |
 | Meta | react-helmet-async |
+| Data / cache | TanStack React Query (where used) |
 | Forms | react-hook-form + zod (where used) |
+| Unit tests | Vitest |
+| E2E | Playwright |
+| Quality | ESLint, Lighthouse CI |
+
+---
+
+## npm scripts
+
+| Script | Description |
+|--------|-------------|
+| `npm run dev` | Vite dev server (default port from `vite.config.ts`) |
+| `npm run build` | Production build → `dist/` |
+| `npm run preview` | Serve `dist` locally |
+| `npm run lint` | ESLint |
+| `npm run test` | Vitest (once) |
+| `npm run test:e2e` | `build` + Playwright |
+| `npm run lighthouse:ci` | Lighthouse CI (after `build`; needs Chrome) |
 
 ---
 
 ## Local development
 
-**Requirements:** Node.js 18+
+**Requirements:** Node.js **20+**
 
 ```bash
 git clone https://github.com/Rasoolsk9/trinethra-abroad-services.git
@@ -88,43 +135,37 @@ npm install
 npm run dev
 ```
 
-App URL: **http://localhost:5173**
+---
 
-Other scripts: `npm run build`, `npm run preview`, `npm run lint`, `npm run test`.
+## Repository layout (high level)
+
+- `src/pages/` — Routes: home (`Index` + `HomePageLazy`), About, country (`CountryPage`), university apply/details, free counselling, 404.
+- `src/components/sections/` — Home sections, hero, countries, etc.
+- `src/components/home/` — `HomePageFallback` loading UI.
+- `api/lead.ts` — Vercel serverless lead handler.
+- `e2e/` — Playwright smoke tests.
+- `public/` — Static assets (images, favicon, sitemap, robots).
 
 ---
 
-## Environment variables
+## Version history (short)
 
-Server-side secrets (CallMeBot) live only in **Vercel** or local `.env` (not committed). For **public** browser variables, use **Vite** prefixes: `VITE_*` and `import.meta.env.VITE_*`.
-
-Do **not** commit secrets.
-
----
-
-## Assets
-
-- **Logo:** `public/logo-trinethra.png`
-- **Hero:** `public/hero-premium.jpg` and `public/hero-students.jpg` (second slide; also under `src/assets/` if duplicated for bundling)
-- **Country slider:** `public/countries/{slug}.jpg` — filenames must match **slug** in `src/data/country-slides.ts` (includes `kyrgyzstan`, `russia`, `georgia`, `kazakhstan`, `uk`, `usa`, `new-zealand`, `germany`, `canada`)
-
----
-
-## Deploy on Vercel
-
-1. Push this repo to GitHub (see below).
-2. Log in at [vercel.com](https://vercel.com) → **Add New…** → **Project** → import **trinethra-abroad-services**.
-3. Framework preset: **Vite**. Build command: `npm run build`, output directory: **`dist`**.
-4. Deploy. Vercel uses the root **`vercel.json`** so deep links (`/about`, `/mbbs-in-russia`, `/university/...`) resolve to the SPA.
-
-Optional: connect your **custom domain** in the project → **Settings** → **Domains**.
+- **v3.0.0** — Final project: lazy home below hero, CI + E2E + Lighthouse, a11y/perf pass, countries carousel + contact updates, Vercel-ready config (this document).
+- **v2** — Premium brand, expanded destinations, `ScrollToHash`, lead API, lazy routes, performance headers.
+- **v1** — Initial consultancy-style site, hero, early carousel, SPA on Vercel.
 
 ---
 
 ## Git workflow
 
-- **`main`** — deployable, client-facing branch  
-- Feature work can use topic branches; merge to `main` after review.
+- **`main`** — Default branch; connect to Vercel **Production** if you use automatic deploys.
+- CI runs on **push** and **pull request** to `main` / `master` / `develop`.
+- **Release tags:** e.g. `v3.0.0` for this final milestone.
+
+```bash
+git tag -a v3.0.0 -m "Trinethra site v3.0.0 final"
+git push origin main --tags
+```
 
 ---
 
@@ -132,4 +173,4 @@ Optional: connect your **custom domain** in the project → **Settings** → **D
 
 Proprietary — **Trinethra Edu Services**. Unauthorized copying or redistribution is not permitted.
 
-**Maintainer:** Rasool  
+**Maintainer:** Rasool

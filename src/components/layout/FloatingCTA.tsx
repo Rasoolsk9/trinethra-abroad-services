@@ -1,7 +1,7 @@
 import { Phone, MessageCircle } from "lucide-react";
 
 export const FloatingCTA = () => {
-  const phoneNumber = "917993909809";
+  const phoneNumber = "91799390909";
 
   const whatsappMessage =
     "Hi, I am interested in MBBS abroad. Please guide me.";
@@ -14,18 +14,18 @@ export const FloatingCTA = () => {
         )}`}
         target="_blank"
         rel="noopener noreferrer"
-        className="flex h-12 w-12 items-center justify-center rounded-full bg-success shadow-lg transition-transform hover:scale-110"
+        className="floating-cta-green-pulse floating-cta-btn-green flex h-12 w-12 items-center justify-center rounded-full transition-transform hover:scale-110"
         aria-label="Chat on WhatsApp"
       >
-        <MessageCircle className="h-5 w-5 text-white" />
+        <MessageCircle className="icon-blink h-5 w-5 text-white" />
       </a>
 
       <a
         href={`tel:+${phoneNumber}`}
-        className="flex h-12 w-12 items-center justify-center rounded-full bg-secondary shadow-lg transition-transform hover:scale-110"
+        className="floating-cta-green-pulse floating-cta-btn-green flex h-12 w-12 items-center justify-center rounded-full transition-transform hover:scale-110"
         aria-label="Call us"
       >
-        <Phone className="h-5 w-5 text-secondary-foreground" />
+        <Phone className="icon-blink h-5 w-5 text-white" />
       </a>
     </div>
   );

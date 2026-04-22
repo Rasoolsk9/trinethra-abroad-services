@@ -47,9 +47,9 @@ const FreeCounselling = () => {
 
               <div className="space-y-4 pt-6 border-t border-white/20">
                 <h3 className="font-semibold text-lg">Contact Us Directly</h3>
-                <a href="tel:+917993909809" className="flex items-center gap-3 text-white/80 hover:text-secondary transition-colors">
+                <a href="tel:+91799390909" className="flex items-center gap-3 text-white/80 hover:text-secondary transition-colors">
                   <Phone className="h-5 w-5" />
-                  +91 79939 09809
+                  +91-799390909
                 </a>
                 <a href="mailto:info@trinethraeduses.in" className="flex items-center gap-3 text-white/80 hover:text-secondary transition-colors">
                   <Mail className="h-5 w-5" />

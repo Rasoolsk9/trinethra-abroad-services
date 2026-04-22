@@ -1,5 +1,6 @@
 import { useEffect, useRef, useState } from "react";
 import { useCountUp } from "@/hooks/useCountUp";
+import { cn } from "@/lib/utils";
 
 type StatDef = {
   key: string;
@@ -11,8 +12,8 @@ type StatDef = {
 };
 
 const trustStats: StatDef[] = [
-  { key: "p", end: 850, suffix: "+", label: "University Partners", format: "plain" },
-  { key: "s", end: 60000, suffix: "+", label: "Success Stories", format: "comma" },
+  { key: "p", end: 60, suffix: "+", label: "University Partners", format: "plain" },
+  { key: "s", end: 1000, suffix: "+", label: "Success Stories", format: "comma" },
   { key: "g", end: 100, suffix: "%", label: "Scholarship Guidance", format: "plain" },
   { key: "m", end: 16, suffix: "L+", prefix: "INR ", label: "Programs Starting", format: "inrL" },
 ];
@@ -23,13 +24,22 @@ function formatStat(n: number, def: StatDef) {
   return `${n}${def.suffix}`;
 }
 
-function StatCard({ def, inView }: { def: StatDef; inView: boolean }) {
+function StatCard({ def, inView, isHome }: { def: StatDef; inView: boolean; isHome: boolean }) {
   const n = useCountUp({ end: def.end, durationMs: 1600, enabled: inView });
   const display = formatStat(n, def);
 
   return (
-    <div className="rounded-2xl border border-border/60 bg-white p-4 text-center shadow-sm">
-      <p className="font-heading text-xl font-bold text-primary md:text-2xl">{display}</p>
+    <div
+      className={cn(
+        "rounded-2xl border p-4 text-center shadow-sm",
+        isHome
+          ? "border-slate-200/80 bg-white/90 backdrop-blur-sm"
+          : "border-border/60 bg-white",
+      )}
+    >
+      <p className={cn("font-heading text-xl font-bold md:text-2xl", isHome ? "text-slate-800" : "text-primary")}>
+        {display}
+      </p>
       <p className="mt-1 text-xs text-muted-foreground md:text-sm">{def.label}</p>
     </div>
   );
@@ -74,7 +84,9 @@ const features: { title: string; description: string; emoji: string; ring: strin
   },
 ];
 
-export const WhyChooseSection = () => {
+type WhyChooseSectionProps = { isHome?: boolean };
+
+export const WhyChooseSection = ({ isHome = false }: WhyChooseSectionProps) => {
   const ref = useRef<HTMLElement>(null);
   const [inView, setInView] = useState(false);
   const [cycle, setCycle] = useState(0);
@@ -99,10 +111,20 @@ export const WhyChooseSection = () => {
   }, [inView]);
 
   return (
-    <section ref={ref} className="bg-[#f6fbff] py-12 md:py-14">
+    <section
+      ref={ref}
+      className={cn("py-12 md:py-14", isHome ? "bg-slate-50/80" : "bg-muted/35")}
+    >
       <div className="container-custom">
         <div className="mx-auto mb-8 max-w-3xl text-center">
-          <span className="mb-3 inline-block rounded-full bg-primary/10 px-4 py-1.5 text-sm font-medium text-primary">
+          <span
+            className={cn(
+              "mb-3 inline-block rounded-full px-4 py-1.5 text-sm font-medium",
+              isHome
+                ? "border border-slate-200/80 bg-white/90 text-slate-700 shadow-sm backdrop-blur-sm"
+                : "bg-primary/10 text-primary",
+            )}
+          >
             Why Choose Us
           </span>
           <h2 className="font-heading text-2xl font-bold text-foreground md:text-3xl">Why Choose Trinethra Edu Services</h2>
@@ -113,7 +135,7 @@ export const WhyChooseSection = () => {
 
         <div className="mb-8 grid grid-cols-2 gap-3 md:grid-cols-4">
           {trustStats.map((def) => (
-            <StatCard key={`${def.key}-${cycle}`} def={def} inView={inView} />
+            <StatCard key={`${def.key}-${cycle}`} def={def} inView={inView} isHome={isHome} />
           ))}
         </div>
 
@@ -122,10 +144,20 @@ export const WhyChooseSection = () => {
           {features.map((feature) => (
             <div
               key={feature.title}
-              className="rounded-2xl border border-border/60 bg-white p-4 shadow-sm transition hover:shadow-md"
-            >
-              <div
-                className={`mb-3 flex h-12 w-12 items-center justify-center rounded-2xl bg-gradient-to-br text-2xl shadow-inner ring-2 ring-white/80 ${feature.ring}`}
+                className={cn(
+                  "rounded-2xl border p-4 shadow-sm transition hover:shadow-md",
+                  isHome
+                    ? "border-slate-200/80 bg-white/90 backdrop-blur-sm"
+                    : "border-border/60 bg-white",
+                )}
+              >
+                <div
+                className={cn(
+                  "mb-3 flex h-12 w-12 items-center justify-center rounded-2xl text-2xl shadow-inner",
+                  isHome
+                    ? "bg-gradient-to-br from-slate-100 to-slate-200/60 ring-2 ring-white/90"
+                    : `bg-gradient-to-br ring-2 ring-white/80 ${feature.ring}`,
+                )}
               >
                 <span role="img" aria-hidden>
                   {feature.emoji}

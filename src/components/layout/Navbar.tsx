@@ -21,9 +21,6 @@ function WhatsAppIcon({ className }: { className?: string }) {
   );
 }
 
-const navLinkClass =
-  "text-[0.8125rem] font-semibold tracking-[0.04em] text-foreground transition-colors hover:text-primary md:text-[0.9375rem]";
-
 function scrollToAnchor(id: string) {
   document.getElementById(id)?.scrollIntoView({ behavior: "smooth", block: "start" });
 }
@@ -34,8 +31,11 @@ export const Navbar = () => {
   const location = useLocation();
   const navigate = useNavigate();
 
+  const navLinkClass =
+    "text-[0.8125rem] font-semibold tracking-[0.04em] text-slate-700 transition-colors hover:text-slate-900 md:text-[0.9375rem]";
+
   const whatsappLink =
-    "https://wa.me/917993909809?text=Hi%20Trinethra%20team%2C%20I%20want%20MBBS%20abroad%20consultation.";
+    "https://wa.me/91799390909?text=Hi%20Trinethra%20team%2C%20I%20want%20MBBS%20abroad%20consultation.";
 
   const onHomeClick = (e: React.MouseEvent<HTMLAnchorElement>) => {
     if (location.pathname !== "/") return;
@@ -60,7 +60,9 @@ export const Navbar = () => {
   };
 
   return (
-    <header className="fixed inset-x-0 top-0 z-50 border-b border-white/25 bg-white/15 backdrop-blur-2xl supports-[backdrop-filter]:bg-white/12 [transform:translateZ(0)] [backface-visibility:hidden]">
+    <header
+      className="fixed inset-x-0 top-0 z-50 border-b border-white/55 bg-white/75 shadow-[0_1px_0_rgba(15,23,42,0.06)] backdrop-blur-2xl supports-[backdrop-filter]:bg-white/60 [transform:translateZ(0)] [backface-visibility:hidden]"
+    >
       <div className="pt-[env(safe-area-inset-top,0px)]">
         <nav className="container-custom py-3 md:py-3.5">
           <div className="flex items-center justify-between">
@@ -68,7 +70,6 @@ export const Navbar = () => {
               to="/"
               onClick={onHomeClick}
               className="flex min-w-0 max-w-[min(100%,calc(100%-8.5rem))] items-center gap-2.5 sm:max-w-none sm:gap-3 md:gap-3.5"
-              aria-label="Trinethra Edu Services — Home"
             >
               <img
                 src="/logo-trinethra.png"
@@ -152,16 +153,16 @@ export const Navbar = () => {
             <div className="flex items-center gap-2">
               <Button
                 asChild
-                className="consult-blink btn-consult-premium h-9 max-w-[9.25rem] shrink-0 px-2.5 text-[11px] sm:h-10 sm:max-w-none sm:px-4 sm:text-sm"
+                className="consult-blink btn-consult-royal h-9 max-w-[9.25rem] shrink-0 px-2.5 text-[11px] sm:h-10 sm:max-w-none sm:px-4 sm:text-sm"
               >
                 <a
                   href={whatsappLink}
                   target="_blank"
                   rel="noopener noreferrer"
                   className="inline-flex items-center justify-center gap-1.5"
-                  aria-label="Consult on WhatsApp"
+                  aria-label="Consult now on WhatsApp"
                 >
-                  <WhatsAppIcon className="h-3.5 w-3.5 shrink-0 sm:h-4 sm:w-4" />
+                  <WhatsAppIcon className="icon-blink h-3.5 w-3.5 shrink-0 sm:h-4 sm:w-4" />
                   <span className="truncate sm:whitespace-normal">Consult Now</span>
                 </a>
               </Button>
@@ -178,7 +179,7 @@ export const Navbar = () => {
           </div>
 
           {open && (
-            <div className="mt-3 rounded-2xl border border-white/30 bg-white/80 p-4 text-foreground shadow-xl backdrop-blur-xl md:hidden">
+            <div className="mt-3 rounded-2xl border border-slate-200/80 bg-white/95 p-4 text-foreground shadow-xl backdrop-blur-xl md:hidden">
               <div className="flex flex-col gap-1">
                 <Link
                   to="/"
@@ -253,12 +254,9 @@ export const Navbar = () => {
                   Contact us
                 </Link>
 
-                <Button
-                  asChild
-                  className="consult-blink btn-consult-premium mt-2 h-11 rounded-xl"
-                >
+                <Button asChild className="consult-blink btn-consult-royal mt-2 h-11 rounded-xl">
                   <a href={whatsappLink} target="_blank" rel="noopener noreferrer" className="inline-flex items-center justify-center gap-2">
-                    <WhatsAppIcon className="h-5 w-5 shrink-0" />
+                    <WhatsAppIcon className="icon-blink h-5 w-5 shrink-0" />
                     Consult Now
                   </a>
                 </Button>

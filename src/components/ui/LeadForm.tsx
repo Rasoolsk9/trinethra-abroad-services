@@ -197,14 +197,18 @@ export const LeadForm = ({
         </div>
 
         <div className={`space-y-2 ${isHero ? "md:col-span-2" : ""}`}>
-          <Label htmlFor="country" className={isHero ? "text-foreground" : ""}>
+          <Label id="lead-preferred-country-label" htmlFor="lead-preferred-country" className={isHero ? "text-foreground" : ""}>
             Preferred Country
           </Label>
           <Select
             value={formData.country}
             onValueChange={(value) => setFormData({ ...formData, country: value })}
           >
-            <SelectTrigger className={isHero ? heroInputClasses : ""}>
+            <SelectTrigger
+              id="lead-preferred-country"
+              className={isHero ? heroInputClasses : ""}
+              aria-labelledby="lead-preferred-country-label"
+            >
               <SelectValue placeholder="Select a country" />
             </SelectTrigger>
             <SelectContent>
@@ -223,7 +227,7 @@ export const LeadForm = ({
         disabled={isSubmitting}
         className={`mt-6 w-full ${
           isHero
-            ? "h-12 bg-secondary text-base font-semibold text-secondary-foreground shadow-md hover:bg-secondary/90"
+            ? "h-12 bg-[hsl(145,88%,26%)] text-base font-semibold text-white shadow-md hover:bg-[hsl(145,88%,23%)]"
             : "bg-primary hover:bg-primary/90"
         }`}
       >

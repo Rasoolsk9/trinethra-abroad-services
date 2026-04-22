@@ -36,7 +36,7 @@ const benefits = [
   {
     icon: Clock,
     title: "No Donations",
-    description: "Zero donation or capitation fees. Transparent fee structure with installment payment options available.",
+    description: "Zero donation or capitation fees. Transparent pricing with installment payment options available.",
   },
 ];
 

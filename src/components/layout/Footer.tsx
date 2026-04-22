@@ -10,7 +10,7 @@ export const Footer = () => {
   return (
     <footer
       id="contact"
-      className="scroll-mt-[calc(4.25rem+env(safe-area-inset-top,0px))] border-t border-border/70 bg-white md:scroll-mt-[calc(5rem+env(safe-area-inset-top,0px))]"
+      className="scroll-mt-[calc(4.25rem+env(safe-area-inset-top,0px))] border-t border-border/70 bg-gradient-to-r from-[#fff7ed] via-white to-[#ecfdf5] md:scroll-mt-[calc(5rem+env(safe-area-inset-top,0px))]"
     >
       <div className="container-custom py-10">
         <div className="flex flex-col items-start justify-between gap-6 md:flex-row md:items-center">
@@ -36,9 +36,12 @@ export const Footer = () => {
           </div>
 
           <div className="flex flex-col items-start gap-3 md:items-end">
-            <a href="tel:+917993909809" className="inline-flex items-center gap-2 text-sm font-medium text-primary hover:text-secondary">
+            <a href="tel:+91799390909" className="inline-flex items-center gap-2 text-sm font-medium text-foreground hover:text-primary">
               <Phone className="h-4 w-4" />
               Call Us
+            </a>
+            <a href="tel:+91799390909" className="text-sm font-semibold text-foreground hover:text-primary">
+              +91-799390909
             </a>
             <div className="flex items-center gap-5">
               {legalLinks.map((link) => (

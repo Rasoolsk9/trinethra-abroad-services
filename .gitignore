@@ -25,3 +25,11 @@ dist-ssr
 .vercel
 .env
 .env*.local
+
+# Playwright
+playwright-report/
+test-results/
+blob-report/
+
+# Lighthouse CI
+.lighthouseci/

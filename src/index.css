@@ -1,13 +1,11 @@
-@import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Inter:wght@400;500;600;700&display=swap');
-
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
 @layer base {
   :root {
-    --background: 210 20% 98%;
-    --foreground: 215 50% 15%;
+    --background: 42 40% 98%;
+    --foreground: 218 47% 17%;
 
     --card: 0 0% 100%;
     --card-foreground: 215 50% 15%;
@@ -15,35 +13,35 @@
     --popover: 0 0% 100%;
     --popover-foreground: 215 50% 15%;
 
-    --primary: 215 80% 35%;
+    --primary: 28 92% 46%;
     --primary-foreground: 0 0% 100%;
 
-    --secondary: 175 60% 40%;
+    --secondary: 145 82% 30%;
     --secondary-foreground: 0 0% 100%;
 
-    --muted: 210 20% 96%;
-    --muted-foreground: 215 20% 45%;
+    --muted: 38 30% 95%;
+    --muted-foreground: 218 23% 38%;
 
-    --accent: 175 70% 45%;
+    --accent: 221 83% 37%;
     --accent-foreground: 0 0% 100%;
 
     --destructive: 0 84% 60%;
     --destructive-foreground: 0 0% 100%;
 
-    --border: 210 20% 90%;
-    --input: 210 20% 90%;
-    --ring: 215 80% 35%;
+    --border: 38 23% 87%;
+    --input: 38 23% 87%;
+    --ring: 221 83% 37%;
 
     --radius: 0.75rem;
 
     /* Custom colors for medical education theme */
-    --navy: 215 80% 20%;
-    --navy-light: 215 60% 30%;
-    --teal: 175 60% 40%;
-    --teal-light: 175 50% 50%;
-    --teal-dark: 175 70% 30%;
-    --gold: 45 90% 55%;
-    --success: 145 60% 45%;
+    --navy: 221 72% 26%;
+    --navy-light: 221 58% 36%;
+    --teal: 145 62% 36%;
+    --teal-light: 145 54% 46%;
+    --teal-dark: 145 69% 28%;
+    --gold: 33 95% 54%;
+    --success: 145 67% 34%;
 
     /* Indian tricolor accents (UI hints — official approximations) */
     --india-saffron: 33 100% 50%;
@@ -51,13 +49,13 @@
     --india-ashoka: 215 80% 35%;
 
     /* Gradients */
-    --gradient-hero: linear-gradient(135deg, hsl(215 80% 25%) 0%, hsl(215 70% 35%) 50%, hsl(175 60% 35%) 100%);
+    --gradient-hero: linear-gradient(126deg, hsl(28 90% 50%) 0%, hsl(221 75% 33%) 48%, hsl(145 74% 30%) 100%);
     --gradient-card: linear-gradient(180deg, hsl(0 0% 100%) 0%, hsl(210 20% 98%) 100%);
-    --gradient-cta: linear-gradient(135deg, hsl(175 60% 40%) 0%, hsl(175 70% 35%) 100%);
-    --gradient-overlay: linear-gradient(180deg, hsla(215, 80%, 20%, 0.9) 0%, hsla(215, 70%, 30%, 0.8) 100%);
+    --gradient-cta: linear-gradient(130deg, hsl(28 87% 48%) 0%, hsl(145 68% 31%) 100%);
+    --gradient-overlay: linear-gradient(180deg, hsla(28, 90%, 52%, 0.82) 0%, hsla(221, 66%, 35%, 0.76) 60%, hsla(145, 67%, 30%, 0.84) 100%);
     /* Lighter overlay (~35% clearer than previous) so photo reads through */
-    --hero-overlay: linear-gradient(95deg, rgba(4, 19, 39, 0.58) 0%, rgba(7, 33, 68, 0.52) 45%, rgba(7, 33, 68, 0.34) 100%);
-    --hero-overlay-alt: linear-gradient(105deg, rgba(4, 19, 39, 0.52) 0%, rgba(7, 33, 68, 0.44) 50%, rgba(7, 33, 68, 0.28) 100%);
+    --hero-overlay: linear-gradient(96deg, rgba(77, 35, 8, 0.56) 0%, rgba(17, 38, 84, 0.48) 45%, rgba(12, 78, 38, 0.33) 100%);
+    --hero-overlay-alt: linear-gradient(105deg, rgba(88, 42, 10, 0.5) 0%, rgba(19, 45, 92, 0.42) 52%, rgba(11, 84, 43, 0.29) 100%);
 
     /* Shadows */
     --shadow-sm: 0 1px 2px hsla(215, 50%, 15%, 0.05);
@@ -78,9 +76,9 @@
 
     /* Page backdrop: soft base + faint tricolor glow */
     --page-atmosphere:
-      radial-gradient(1000px 520px at 100% -5%, hsla(var(--india-saffron) / 0.09) 0%, transparent 55%),
-      radial-gradient(800px 480px at 0% 105%, hsla(var(--india-green) / 0.07) 0%, transparent 50%),
-      linear-gradient(180deg, hsl(210 22% 98.5%) 0%, hsl(210 20% 98%) 45%, hsl(145 16% 97.5%) 100%);
+      radial-gradient(1000px 520px at 100% -5%, hsla(var(--india-saffron) / 0.11) 0%, transparent 55%),
+      radial-gradient(820px 500px at 0% 105%, hsla(var(--india-green) / 0.09) 0%, transparent 50%),
+      linear-gradient(180deg, hsl(34 42% 98.8%) 0%, hsl(40 30% 98%) 45%, hsl(145 18% 97%) 100%);
   }
 
   .dark {
@@ -147,6 +145,18 @@
     background-image: var(--page-atmosphere);
   }
 
+  /* Home only: clean white / glass, no tricolor page wash */
+  body:has(.home-page) {
+    background-color: #fafafa;
+    background-image: linear-gradient(180deg, #ffffff 0%, #f8fafc 45%, #ffffff 100%);
+  }
+
+  body:has(.home-page) footer {
+    background: #ffffff;
+    background-image: none;
+    border-color: hsl(var(--border) / 0.65);
+  }
+
   h1, h2, h3, h4, h5, h6 {
     @apply font-heading font-bold tracking-tight;
   }
@@ -157,6 +167,34 @@
 }
 
 @layer components {
+  .skeleton-shimmer {
+    background: linear-gradient(
+      100deg,
+      transparent 0%,
+      hsla(0, 0%, 100%, 0.7) 45%,
+      transparent 90%
+    );
+    background-size: 220% 100%;
+    animation: skeleton-shimmer 1.4s ease-in-out infinite;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .skeleton-shimmer {
+      animation: none;
+      background: hsl(var(--muted) / 0.4);
+    }
+  }
+
+  .home-deferred-sections {
+    animation: home-sections-enter 0.7s cubic-bezier(0.22, 1, 0.36, 1) both;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .home-deferred-sections {
+      animation: none;
+    }
+  }
+
   .container-custom {
     @apply max-w-7xl mx-auto px-4 sm:px-6 lg:px-8;
   }
@@ -275,32 +313,63 @@
   }
 
   .consult-blink {
-    animation: consultPulse 1.15s ease-in-out infinite;
+    animation: consultPulseRoyal 1.2s ease-in-out infinite;
   }
 
-  /** WhatsApp CTA — premium: deep navy → petrol teal (single smooth gradient, readable on mobile) */
+  /** Consult Now — premium royal blue + soft pulse (used site-wide) */
+  .btn-consult-royal {
+    @apply rounded-full font-semibold text-white;
+    background: linear-gradient(145deg, #1e3a8a 0%, #1d4ed8 42%, #172554 100%);
+    box-shadow:
+      0 4px 18px rgba(30, 58, 138, 0.45),
+      0 1px 0 rgba(255, 255, 255, 0.18) inset;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+  }
+
+  .btn-consult-royal:hover {
+    filter: brightness(1.06);
+    box-shadow:
+      0 6px 24px rgba(30, 64, 175, 0.5),
+      0 1px 0 rgba(255, 255, 255, 0.22) inset;
+  }
+
+  /** Legacy multi-colour CTA (non-home navbar was tricolor) — keep class for any stray refs */
   .btn-consult-premium {
     @apply rounded-full font-semibold text-white;
-    background: linear-gradient(
-      135deg,
-      #0a1628 0%,
-      #0f2847 18%,
-      #134e5c 52%,
-      #0d9488 88%,
-      #14b8a6 100%
-    );
+    background: linear-gradient(135deg, #1e3a8a 0%, #1d4ed8 50%, #172554 100%);
     box-shadow:
-      0 4px 16px rgba(15, 23, 42, 0.35),
+      0 4px 16px rgba(30, 58, 138, 0.4),
       0 1px 0 rgba(255, 255, 255, 0.12) inset;
-    border: 1px solid rgba(255, 255, 255, 0.12);
-    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.25);
+    border: 1px solid rgba(255, 255, 255, 0.15);
   }
 
   .btn-consult-premium:hover {
-    filter: brightness(1.07);
+    filter: brightness(1.06);
+  }
+
+  /** Subtle blink on icons inside primary actions */
+  .icon-blink {
+    animation: iconBlink 1.1s ease-in-out infinite;
+  }
+
+  /** Floating CTA: premium 3D green buttons */
+  .floating-cta-btn-green {
+    background: linear-gradient(145deg, #16a34a 0%, #22c55e 42%, #166534 100%);
+    border: 1px solid rgba(255, 255, 255, 0.26);
     box-shadow:
-      0 6px 22px rgba(15, 23, 42, 0.4),
-      0 1px 0 rgba(255, 255, 255, 0.15) inset;
+      0 10px 20px -10px rgba(15, 23, 42, 0.55),
+      0 3px 10px rgba(22, 163, 74, 0.45),
+      0 1px 0 rgba(255, 255, 255, 0.3) inset,
+      0 -2px 8px rgba(20, 83, 45, 0.45) inset;
+  }
+
+  .floating-cta-btn-green:hover {
+    filter: brightness(1.06);
+  }
+
+  .floating-cta-green-pulse {
+    animation: floatingGreenPulse 1.2s ease-in-out infinite;
   }
 
   /* Hero: alternating enter — slide (horizontal) vs fade */
@@ -334,20 +403,74 @@
   }
 }
 
-@keyframes consultPulse {
+@keyframes consultPulseRoyal {
   0%,
   100% {
     box-shadow:
-      0 0 0 0 rgba(13, 148, 136, 0.4),
-      0 0 0 0 rgba(15, 23, 42, 0.15),
-      0 4px 16px rgba(15, 23, 42, 0.3);
+      0 0 0 0 rgba(37, 99, 235, 0.4),
+      0 0 0 0 rgba(30, 58, 138, 0.2),
+      0 4px 18px rgba(30, 58, 138, 0.4);
     transform: scale(1);
   }
   50% {
     box-shadow:
-      0 0 0 8px rgba(13, 148, 136, 0),
-      0 0 0 4px rgba(15, 23, 42, 0),
-      0 6px 20px rgba(15, 23, 42, 0.35);
+      0 0 0 9px rgba(37, 99, 235, 0),
+      0 0 0 3px rgba(30, 58, 138, 0),
+      0 6px 22px rgba(30, 64, 175, 0.5);
     transform: scale(1.02);
+  }
+}
+
+@keyframes iconBlink {
+  0%,
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.72;
+    transform: scale(0.96);
+  }
+}
+
+@keyframes floatingGreenPulse {
+  0%,
+  100% {
+    box-shadow:
+      0 0 0 0 rgba(34, 197, 94, 0.42),
+      0 10px 20px -10px rgba(15, 23, 42, 0.55),
+      0 3px 10px rgba(22, 163, 74, 0.45),
+      0 1px 0 rgba(255, 255, 255, 0.3) inset,
+      0 -2px 8px rgba(20, 83, 45, 0.45) inset;
+    transform: scale(1);
+  }
+  50% {
+    box-shadow:
+      0 0 0 10px rgba(34, 197, 94, 0),
+      0 12px 24px -10px rgba(15, 23, 42, 0.6),
+      0 4px 12px rgba(22, 163, 74, 0.5),
+      0 1px 0 rgba(255, 255, 255, 0.3) inset,
+      0 -2px 8px rgba(20, 83, 45, 0.45) inset;
+    transform: scale(1.03);
+  }
+}
+
+@keyframes skeleton-shimmer {
+  0% {
+    background-position: 120% 0;
+  }
+  100% {
+    background-position: -120% 0;
+  }
+}
+
+@keyframes home-sections-enter {
+  from {
+    opacity: 0;
+    transform: translate3d(0, 14px, 0);
+  }
+  to {
+    opacity: 1;
+    transform: translate3d(0, 0, 0);
   }
 }
