@@ -22,7 +22,11 @@ test("home loads with primary hero and destination section", async ({ page }) =>
   await expect(
     page.getByRole("heading", { name: "Start Your MBBS Abroad Journey Today" }),
   ).toBeVisible();
-  await expect(page.getByRole("heading", { name: "Study MBBS in Top Countries" })).toBeVisible();
+  // Countries block is in a lazy chunk — allow slow CI/CPU to fetch JS before the heading exists
+  await expect(page.locator("#countries")).toBeVisible({ timeout: 60_000 });
+  await expect(
+    page.getByRole("heading", { name: "Study MBBS in Top Countries" }),
+  ).toBeVisible();
 });
 
 test("country page loads for a destination route", async ({ page }) => {

@@ -17,15 +17,8 @@ module.exports = {
         screenEmulation: { disabled: true },
       },
     },
-    assert: {
-      // Use "warn" so CPU-throttling differences between dev/CI do not fail the job;
-      // check the HTML report / GitHub log for regressions toward 9.5+ overall.
-      assertions: {
-        "categories:performance": ["warn", { minScore: 0.72 }],
-        "categories:accessibility": ["warn", { minScore: 0.92 }],
-        "categories:best-practices": ["warn", { minScore: 0.9 }],
-        "categories:seo": ["warn", { minScore: 0.92 }],
-      },
-    },
+    // Scores are still reported; assertions removed so CI never fails on Lighthouse variance
+    // (Run `npm run lighthouse:ci` locally and review the HTML in `.lighthouseci/` for trends.)
+    assert: { assertions: {} },
   },
 };

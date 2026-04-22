@@ -14,6 +14,9 @@ export default defineConfig({
   retries: process.env.CI ? 2 : 0,
   workers: process.env.CI ? 1 : undefined,
   reporter: process.env.CI ? [["github"], ["html", { open: "never" }]] : "list",
+  /* Lazy home sections + cold CI can exceed 5s default */
+  expect: { timeout: 30_000 },
+  timeout: 90_000,
   use: {
     baseURL,
     trace: "on-first-retry",
@@ -29,5 +32,6 @@ export default defineConfig({
     url: baseURL,
     reuseExistingServer: !process.env.CI,
     stdout: "pipe",
+    timeout: 120_000,
   },
 });

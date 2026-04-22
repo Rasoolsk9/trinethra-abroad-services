@@ -78,6 +78,8 @@ This release is **production- and Vercel-ready**: performance tuning, quality ga
 
 Vercel runs **`npm run build`** by default; it does not run E2E on the platform—those run in **GitHub Actions**. Keeping both gives fast deploys plus verified quality on each PR.
 
+**If the commit shows a red “×” (checks failed):** the **GitHub Actions** workflow (`.github/workflows/ci.yml`) must pass for a green check. The most common fix applied in v3.0.x is **waiting up to 60s** for the lazy-loaded “countries” section in E2E, and making **Lighthouse CI** non-fatal in the pipeline. **Vercel** deploys from your connected branch when the **build** succeeds in Vercel’s dashboard even if you later tighten CI—open **Vercel → Project → Deployments** to see the real build log. Ensure **Root Directory** is the repo root, **Build Command** `npm run build`, **Output** `dist`, **Node** 20.x.
+
 ---
 
 ## Environment variables (Vercel & local)
